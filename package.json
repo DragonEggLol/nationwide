@@ -1,0 +1,17 @@
+{
+  "name": "nationwide-game-site",
+  "version": "1.0.0",
+  "description": "Official website for Nationwide - Strategic Political Intrigue Game",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx live-server",
+    "build": "echo 'Static site - no build process needed'",
+    "start": "npx live-server"
+  },
+  "keywords": ["game", "strategy", "political", "multiplayer", "tpt"],
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}
