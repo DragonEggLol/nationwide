@@ -15,12 +15,12 @@ function initSmoothScrolling() {
     
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
             const targetId = this.getAttribute('href');
             const targetElement = document.querySelector(targetId);
             
-            if (targetElement && targetId !== '#') {
-                e.preventDefault();
-                
+            if (targetElement) {
                 const headerOffset = 70; // Account for fixed navbar
                 const elementPosition = targetElement.getBoundingClientRect().top;
                 const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
@@ -37,7 +37,7 @@ function initSmoothScrolling() {
     });
 }
 
-// Mobile navigation functionality - FIXED!
+// Mobile navigation functionality
 function initMobileNavigation() {
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
@@ -50,34 +50,10 @@ function initMobileNavigation() {
             navbar.classList.toggle('menu-open');
         });
         
-        // Handle mobile dropdown clicks - IMPROVED!
-        const dropdowns = document.querySelectorAll('.nav-dropdown > a');
-        dropdowns.forEach(dropdown => {
-            dropdown.addEventListener('click', function(e) {
-                if (window.innerWidth <= 768) {
-                    e.preventDefault();
-                    const parent = this.parentElement;
-                    const isActive = parent.classList.contains('active');
-                    
-                    // Close all other dropdowns
-                    document.querySelectorAll('.nav-dropdown.active').forEach(item => {
-                        if (item !== parent) item.classList.remove('active');
-                    });
-                    
-                    // Toggle current dropdown
-                    parent.classList.toggle('active', !isActive);
-                }
-            });
-        });
-        
-        // Close dropdown when clicking on dropdown links - NEW!
-        const dropdownLinks = document.querySelectorAll('.dropdown-menu a');
-        dropdownLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                if (window.innerWidth <= 768) {
-                    closeMobileMenu();
-                }
-            });
+        // Close menu when clicking on nav links
+        const navLinks = document.querySelectorAll('.nav-menu a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
         });
         
         // Close menu when clicking outside
@@ -98,11 +74,6 @@ function closeMobileMenu() {
         hamburger.classList.remove('active');
         navMenu.classList.remove('active');
         navbar.classList.remove('menu-open');
-        
-        // Close all dropdowns - NEW!
-        document.querySelectorAll('.nav-dropdown.active').forEach(item => {
-            item.classList.remove('active');
-        });
     }
 }
 
@@ -121,16 +92,11 @@ function initScrollEffects() {
             navbar.style.backgroundColor = 'rgba(10, 14, 26, 0.95)';
         }
         
-        // Hide/show navbar on scroll direction (only on mobile) - IMPROVED!
-        if (window.innerWidth <= 768) {
-            if (currentScrollY > lastScrollY && currentScrollY > 100) {
-                navbar.style.transform = 'translateY(-100%)';
-                closeMobileMenu(); // Close menu when scrolling down
-            } else {
-                navbar.style.transform = 'translateY(0)';
-            }
+        // Hide/show navbar on scroll direction
+        if (currentScrollY > lastScrollY && currentScrollY > 100) {
+            navbar.style.transform = 'translateY(-100%)';
         } else {
-            navbar.style.transform = 'translateY(0)'; // Always show on desktop
+            navbar.style.transform = 'translateY(0)';
         }
         
         lastScrollY = currentScrollY;
@@ -325,6 +291,48 @@ function addDynamicStyles() {
         @keyframes pulse {
             0%, 100% { transform: translate(-50%, -50%) scale(1); }
             50% { transform: translate(-50%, -50%) scale(1.05); }
+        }
+        
+        /* Mobile menu styles */
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background-color: rgba(10, 14, 26, 0.98);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                padding: 2rem 0;
+                gap: 1rem;
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .nav-menu li {
+                margin: 1rem 0;
+            }
+            
+            .hamburger.active span:nth-child(1) {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+            
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+            
+            .navbar {
+                transition: transform 0.3s ease-in-out, background-color 0.3s ease;
+            }
         }
     `;
     
