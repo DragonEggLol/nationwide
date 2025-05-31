@@ -1,6 +1,8 @@
 {
-  "version": 2,
-  "name": "nationwide-game",
+  "buildCommand": "",
+  "outputDirectory": ".",
+  "installCommand": "",
+  "devCommand": "",
   "headers": [
     {
       "source": "/(.*)",
