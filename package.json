@@ -9,7 +9,7 @@
     "start": "npx live-server"
   },
   "keywords": ["game", "strategy", "political", "multiplayer", "tpt"],
-  "author": "Your Name",
+  "author": "DragonEggLol",
   "license": "MIT",
   "devDependencies": {
     "live-server": "^1.2.2"
