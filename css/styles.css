@@ -35,83 +35,127 @@ body {
     padding: 0 2rem;
 }
 
-/* Navigation */
-.navbar {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background: rgba(10, 14, 26, 0.95);
-    backdrop-filter: blur(10px);
-    z-index: 1000;
-    border-bottom: 1px solid var(--border-color);
-}
+ /* Navigation */
+ .navbar {
+     position: fixed;
+     top: 0;
+     width: 100%;
+     background: rgba(10, 14, 26, 0.95);
+     backdrop-filter: blur(10px);
+     z-index: 1000;
+     border-bottom: 1px solid var(--border-color);
+ }
 
-.nav-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 70px;
-}
+ .nav-container {
+     max-width: 1200px;
+     margin: 0 auto;
+     padding: 0 2rem;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     height: 70px;
+ }
 
-.nav-logo h1 {
-    font-family: 'Orbitron', monospace;
-    font-weight: 900;
-    font-size: 1.5rem;
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
+ .nav-logo h1 {
+     font-family: 'Orbitron', monospace;
+     font-weight: 900;
+     font-size: 1.5rem;
+     background: var(--gradient-primary);
+     -webkit-background-clip: text;
+     -webkit-text-fill-color: transparent;
+     background-clip: text;
+ }
 
-.nav-menu {
-    display: flex;
-    list-style: none;
-    gap: 2rem;
-}
+ .nav-menu {
+     display: flex;
+     list-style: none;
+     gap: 2rem;
+ }
 
-.nav-menu a {
-    color: var(--gray-text);
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s ease;
-    position: relative;
-}
+ .nav-menu a {
+     color: var(--gray-text);
+     text-decoration: none;
+     font-weight: 500;
+     transition: color 0.3s ease;
+     position: relative;
+ }
 
-.nav-menu a:hover {
-    color: var(--primary-color);
-}
+ .nav-menu a:hover {
+     color: var(--primary-color);
+ }
 
-.nav-menu a::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--gradient-primary);
-    transition: width 0.3s ease;
-}
+ .nav-menu a::after {
+     content: '';
+     position: absolute;
+     bottom: -5px;
+     left: 0;
+     width: 0;
+     height: 2px;
+     background: var(--gradient-primary);
+     transition: width 0.3s ease;
+ }
 
-.nav-menu a:hover::after {
-    width: 100%;
-}
+ .nav-menu a:hover::after {
+     width: 100%;
+ }
 
-.hamburger {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
-    gap: 4px;
-}
+ .hamburger {
+     display: none;
+     flex-direction: column;
+     cursor: pointer;
+     gap: 4px;
+ }
 
-.hamburger span {
-    width: 25px;
-    height: 3px;
-    background: var(--light-text);
-    transition: 0.3s ease;
-}
+ .hamburger span {
+     width: 25px;
+     height: 3px;
+     background: var(--light-text);
+     transition: 0.3s ease;
+ }
+ 
+ /* Ensure each top‐level <li> can position its submenu */
+ .nav-menu li {
+     position: relative;
+ }
+ 
+ /* Hide all submenus by default */
+ .nav-menu .dropdown-menu {
+     display: none;
+     position: absolute;
+     top: 100%;
+     left: 0;
+     background: rgba(10, 14, 26, 0.95);
+     backdrop-filter: blur(10px);
+     list-style: none;
+     padding: 0.5rem 0;
+     border: 1px solid var(--border-color);
+     border-radius: 8px;
+     z-index: 1000;
+ }
+ 
+ /* Show submenu when its parent <li> is hovered */
+ .nav-menu li:hover > .dropdown-menu {
+     display: block;
+ }
+ 
+ /* Reset margin/padding on each submenu <li> */
+ .nav-menu .dropdown-menu li {
+     margin: 0;
+     padding: 0;
+ }
+ 
+ /* Style dropdown links */
+ .nav-menu .dropdown-menu li a {
+     padding: 0.5rem 1rem;
+     display: block;
+     white-space: nowrap;
+     color: var(--gray-text);
+     transition: color 0.3s ease;
+ }
+ 
+ .nav-menu .dropdown-menu li a:hover {
+     color: var(--primary-color);
+ }
 
 /* Hero Section */
 .hero {
