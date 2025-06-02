@@ -5,110 +5,385 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hall of Fame - Nationwide</title>
     <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* ================================
+           Hall of Fame – Page-Scoped Styles
+           ================================ */
+
+        /* Container for each main section */
+        .hof-section {
+            padding: 2rem 0;
+        }
+
+        .hof-section .section-header {
+            margin-bottom: 2rem;
+        }
+
+        /* ---------- Nationwides Grid ---------- */
+        .nationwides-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .nationwide-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+        }
+
+        .nationwide-card:hover {
+            border-color: var(--accent-color);
+            box-shadow: 0 10px 30px rgba(0, 212, 170, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .nationwide-images {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .nationwide-planet-img,
+        .nationwide-map-img {
+            width: 100%;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .nationwide-info {
+            margin-bottom: 1rem;
+        }
+
+        .nationwide-info h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--light-text);
+        }
+
+        .nationwide-info a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        .nationwide-info a:hover {
+            text-decoration: underline;
+        }
+
+        .nationwide-info .host {
+            font-size: 0.9rem;
+            color: var(--gray-text);
+            margin-top: 0.25rem;
+        }
+
+        .nationwide-stats {
+            margin-top: auto;
+        }
+
+        .nationwide-stats ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .nationwide-stats li {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.25rem 0;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.9rem;
+        }
+
+        .nationwide-stats li:last-child {
+            border-bottom: none;
+        }
+
+        /* ---------- Players Grid ---------- */
+        .players-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .player-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .player-card:hover {
+            border-color: var(--accent-color);
+            box-shadow: 0 10px 30px rgba(0, 212, 170, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .player-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border: 2px solid var(--primary-color);
+        }
+
+        .player-achievement {
+            margin-bottom: 1rem;
+            width: 100%;
+        }
+
+        .player-achievement-img {
+            width: 100%;
+            border-radius: 8px;
+            object-fit: cover;
+            margin-bottom: 0.5rem;
+        }
+
+        .player-username {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--light-text);
+        }
+
+        .player-desc {
+            font-size: 0.95rem;
+            color: var(--gray-text);
+            line-height: 1.4;
+        }
+
+        /* Responsive adjustments, just in case */
+        @media (max-width: 480px) {
+            .nationwides-grid,
+            .players-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    >
 </head>
 <body>
     <!-- Navigation -->
-  <nav class="navbar">
-    <div class="nav-container">
-      <div class="nav-logo">
-        <a href="index.html">
-        <h1>NATIONWIDE</h1>
-        </a>
-      </div>
-      <ul class="nav-menu">
-        <!-- HOME dropdown -->
-        <li class="nav-item dropdown">
-          <a href="#" class="nav-link">Home</a>
-          <ul class="dropdown-menu">
-            <li><a href="index.html#about">About</a></li>
-            <li><a href="index.html#how-to-play">How to Play</a></li>
-            <li><a href="index.html#features">Features</a></li>
-            <li><a href="index.html#join">Join Game</a></li>
-          </ul>
-        </li>
-
-        <!-- COMMUNITY dropdown -->
-        <li class="nav-item dropdown">
-          <a href="#" class="nav-link">Community</a>
-          <ul class="dropdown-menu">
-            <li><a href="platforms-required.html">Platforms Required</a></li>
-            <li><a href="hall-of-fame.html">Hall of Fame</a></li>
-          </ul>
-        </li>
-
-        <!-- RESOURCES dropdown -->
-        <li class="nav-item dropdown">
-          <a href="#" class="nav-link">Resources</a>
-          <ul class="dropdown-menu">
-            <li><a href="new-player-guide.html">New Player Guide</a></li>
-            <li><a href="hosting-guide.html">Hosting Guide</a></li>
-            <li><a href="strategy-tips.html">Strategy Tips</a></li>
-            <li><a href="game-history.html">Game History</a></li>
-            <li><a href="lore.html">Lore</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-  </nav>
-
-    <!-- Main Content Placeholder -->
-    <section id="hall-of-fame" class="content">
-        <div class="container">
-            <div class="section-header">
-                <h2>Hall of Fame</h2>
-            </div>
-            <!-- Basic framework for adding content later -->
-            <p><!-- Content coming soon... --></p>
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="nav-logo">
+          <a href="index.html">
+            <h1>NATIONWIDE</h1>
+          </a>
         </div>
+        <ul class="nav-menu">
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link">Home</a>
+            <ul class="dropdown-menu">
+              <li><a href="index.html#about">About</a></li>
+              <li><a href="index.html#how-to-play">How to Play</a></li>
+              <li><a href="index.html#features">Features</a></li>
+              <li><a href="index.html#join">Join Game</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link">Community</a>
+            <ul class="dropdown-menu">
+              <li><a href="platforms-required.html">Platforms Required</a></li>
+              <li><a href="hall-of-fame.html">Hall of Fame</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link">Resources</a>
+            <ul class="dropdown-menu">
+              <li><a href="new-player-guide.html">New Player Guide</a></li>
+              <li><a href="hosting-guide.html">Hosting Guide</a></li>
+              <li><a href="strategy-tips.html">Strategy Tips</a></li>
+              <li><a href="game-history.html">Game History</a></li>
+              <li><a href="lore.html">Lore</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Main Content: Hall of Fame -->
+    <section id="hall-of-fame" class="content">
+      <div class="container">
+        <div class="section-header">
+          <h2>Hall of Fame</h2>
+          <p>Celebrating the top Nationwides and Players of our universe.</p>
+        </div>
+
+        <!-- ===== Nationwides Section ===== -->
+        <div class="hof-section" id="nationwides">
+          <div class="section-header">
+            <h2>Top Nationwides</h2>
+            <p>View the highest-ranked Nationwides, their hosts, and leading nations.</p>
+          </div>
+          <div class="nationwides-grid">
+            <div class="nationwide-card">
+              <div class="nationwide-images">
+                <img src="https://beeimg.com/images/y62356285634.png" alt="[Planet Name] Planet" class="nationwide-planet-img">
+                <img src="https://static.powdertoy.co.uk/2503579.png" alt="[Nationwide Map]" class="nationwide-map-img">
+              </div>
+              <div class="nationwide-info">
+                <h3>Nationwide: Edir</h3>
+                <a href="https://powdertoy.co.uk/Browse/View.html?ID=2503579" target="_blank" rel="noopener">
+                  TPT ID: 2503579
+                </a>
+                <div class="host">Host: @MinecraftTranquility</div>
+              </div>
+              <div class="nationwide-stats">
+                <ul>
+                  <li><span>Soviet Powers</span> <span>Pop: 583M</span></li>
+                  <li><span>Empire of Man</span> <span>Pop: 499M</span></li>
+                  <li><span>U.F.R</span> <span>Pop: 364M</span></li>
+                  <li><span>Jessane Republic</span> <span>Pop: 205M</span></li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="nationwide-card">
+              <div class="nationwide-images">
+                <img src="[Planet Image URL]" alt="[Planet Name] Planet" class="nationwide-planet-img">
+                <img src="[Map Image URL]" alt="[Nationwide Map]" class="nationwide-map-img">
+              </div>
+              <div class="nationwide-info">
+                <h3>[Nationwide Name]</h3>
+                <a href="[TPT link or ID]" target="_blank" rel="noopener">
+                  TPT ID: [ID or URL]
+                </a>
+                <div class="host">Host: @[username]</div>
+              </div>
+              <div class="nationwide-stats">
+                <ul>
+                  <li><span>[Top Nation 1]</span> <span>Pop: [Count]</span></li>
+                  <li><span>[Top Nation 2]</span> <span>Pop: [Count]</span></li>
+                  <li><span>[Top Nation 3]</span> <span>Pop: [Count]</span></li>
+                  <li><span>[Top Nation 4]</span> <span>Pop: [Count]</span></li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="nationwide-card">
+              <div class="nationwide-images">
+                <img src="[Planet Image URL]" alt="[Planet Name] Planet" class="nationwide-planet-img">
+                <img src="[Map Image URL]" alt="[Nationwide Map]" class="nationwide-map-img">
+              </div>
+              <div class="nationwide-info">
+                <h3>[Nationwide Name]</h3>
+                <a href="[TPT link or ID]" target="_blank" rel="noopener">
+                  TPT ID: [ID or URL]
+                </a>
+                <div class="host">Host: @[username]</div>
+              </div>
+              <div class="nationwide-stats">
+                <ul>
+                  <li><span>[Top Nation 1]</span> <span>Pop: [Count]</span></li>
+                  <li><span>[Top Nation 2]</span> <span>Pop: [Count]</span></li>
+                  <li><span>[Top Nation 3]</span> <span>Pop: [Count]</span></li>
+                  <li><span>[Top Nation 4]</span> <span>Pop: [Count]</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== Players Section ===== -->
+        <div class="hof-section" id="players">
+          <div class="section-header">
+            <h2>Top Players</h2>
+            <p>Recognizing outstanding players and their contributions.</p>
+          </div>
+          <div class="players-grid">
+            <div class="player-card">
+              <img
+                src="media/player-icons/johndoe.png"
+                alt="JohnDoe Icon"
+                class="player-icon"
+              />
+              <div class="player-achievement">
+                <img src="[Achievement Image URL]" alt="[Achievement]" class="player-achievement-img">
+                <span>[Achievement Description]</span>
+              </div>
+              <div class="player-username">JohnDoe</div>
+              <div class="player-desc">
+                John Doe description
+              </div>
+            </div>
+
+            <div class="player-card">
+              <img
+                src="[path/to/icon.png]"
+                alt="[Username] Icon"
+                class="player-icon"
+              />
+              <div class="player-achievement">
+                <img src="[Achievement Image URL]" alt="[Achievement]" class="player-achievement-img">
+                <span>[Achievement Description]</span>
+              </div>
+              <div class="player-username">[Username]</div>
+              <div class="player-desc">
+                [Brief description of achievements or current activity]
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Nationwide</h3>
-                    <p>The ultimate strategic experience.</p>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Game</h4>
-                    <ul>
-                        <li><a href="index.html#about">About</a></li>
-                        <li><a href="index.html#how-to-play">How to Play</a></li>
-                        <li><a href="index.html#features">Features</a></li>
-                        <li><a href="index.html#join">Join</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Community</h4>
-                    <ul>
-                        <li><a href="https://discord.gg/j8HJSxDXvg">Discord</a></li>
-                        <li><a href="https://powdertoy.co.uk/">The Powder Toy</a></li>
-                        <li><a href="new-player-guide.html">Player Guides</a></li>
-                        <li><a href="hall-of-fame.html">Hall of Fame</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Resources</h4>
-                    <ul>
-                        <li><a href="new-player-guide.html">New Player Guide</a></li>
-                        <li><a href="hosting-guide.html">Hosting Guide</a></li>
-                        <li><a href="strategy-tips.html">Strategy Tips</a></li>
-                        <li><a href="game-history.html">Game History</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2025 Nationwide Game Community</p>
-            </div>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3>Nationwide</h3>
+            <p>The ultimate strategic experience.</p>
+          </div>
+          <div class="footer-section">
+            <h4>Game</h4>
+            <ul>
+              <li><a href="index.html#about">About</a></li>
+              <li><a href="index.html#how-to-play">How to Play</a></li>
+              <li><a href="index.html#features">Features</a></li>
+              <li><a href="index.html#join">Join</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>Community</h4>
+            <ul>
+              <li><a href="https://discord.gg/j8HJSxDXvg">Discord</a></li>
+              <li><a href="https://powdertoy.co.uk/">The Powder Toy</a></li>
+              <li><a href="new-player-guide.html">Player Guides</a></li>
+              <li><a href="hall-of-fame.html">Hall of Fame</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>Resources</h4>
+            <ul>
+              <li><a href="new-player-guide.html">New Player Guide</a></li>
+              <li><a href="hosting-guide.html">Hosting Guide</a></li>
+              <li><a href="strategy-tips.html">Strategy Tips</a></li>
+              <li><a href="game-history.html">Game History</a></li>
+            </ul>
+          </div>
         </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 Nationwide Game Community</p>
+        </div>
+      </div>
     </footer>
 
     <script src="js/main.js"></script>
