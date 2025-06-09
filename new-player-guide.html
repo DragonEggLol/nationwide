@@ -4,113 +4,788 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New Player Guide - Nationwide</title>
+    <meta name="description" content="Learn the basics of Nationwide gameplay with our comprehensive New Player Guide.">
+    <meta name="keywords" content="Nationwide, game, new player guide, gameplay mechanics, hosting guide, strategy tips, community, multiplayer game">
+    <meta name="author" content="Nationwide Game Community">
+    <meta content="#b71919" data-react-helmet="true" name="theme-color" />
+    <link rel="icon" href="media/site images/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="media/site images/favicon.png" type="image/x-icon">
+    <meta content="https://www.nationwides.fyi/media/site%20images/favicon.png" property="og:image" />
     <link rel="stylesheet" href="css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .wiki-layout {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            min-height: calc(100vh - 140px);
+        }
+
+        /* Sidebar Navigation */
+        .wiki-nav {
+            position: sticky;
+            top: 90px;
+            height: fit-content;
+            max-height: calc(100vh - 110px);
+            overflow-y: auto;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .wiki-nav h3 {
+            font-family: 'Orbitron', monospace;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .nav-section-title {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-section-title:hover {
+            color: var(--accent-color);
+        }
+
+        .nav-section-title::before {
+            content: '▶';
+            font-size: 0.7rem;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-section-title.active::before {
+            transform: rotate(90deg);
+        }
+
+        .nav-subsections {
+            margin-left: 1.2rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        .nav-subsections.active {
+            display: block;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 0.4rem 0;
+            color: var(--gray-text);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding-left: 1rem;
+        }
+
+        .nav-link:hover {
+            color: var(--light-text);
+            transform: translateX(3px);
+        }
+
+        .nav-link.active {
+            color: var(--accent-color);
+        }
+
+        .nav-link.active::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 4px;
+            background: var(--accent-color);
+            border-radius: 50%;
+        }
+
+        /* Main Content Area */
+        .wiki-content {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2.5rem;
+            min-height: 600px;
+        }
+
+        .content-header {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .content-header h1 {
+            font-family: 'Orbitron', monospace;
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .content-header p {
+            color: var(--gray-text);
+            font-size: 1.1rem;
+        }
+
+        /* Section Styles */
+        .wiki-section {
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .wiki-section:nth-child(2) { animation-delay: 0.1s; }
+        .wiki-section:nth-child(3) { animation-delay: 0.2s; }
+        .wiki-section:nth-child(4) { animation-delay: 0.3s; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--light-text);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-color), transparent);
+        }
+
+        .subsection {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 3px solid var(--primary-color);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .subsection:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateX(5px);
+        }
+
+        .subsection-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .content-placeholder {
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.02);
+            border: 2px dashed rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: var(--gray-text);
+            font-style: normal;
+            text-align: left;
+            min-height: 100px;
+            line-height: 1.7;
+        }
+
+        .content-placeholder p {
+            margin-bottom: 0.5rem;
+            color: var(--gray-text);
+            font-style: normal;
+        }
+
+        /* Progress Indicator */
+        .reading-progress {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .reading-progress-bar {
+            height: 100%;
+            background: var(--gradient-primary);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        /* Quick Navigation */
+        .quick-nav {
+            position: fixed;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+        }
+
+        .quick-nav-item {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            margin: 0.5rem 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quick-nav-item:hover,
+        .quick-nav-item.active {
+            background: var(--primary-color);
+            transform: scale(1.5);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            .wiki-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .wiki-nav {
+                position: relative;
+                top: 0;
+                max-height: none;
+                margin-bottom: 2rem;
+            }
+
+            .quick-nav {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .wiki-content {
+                padding: 1.5rem;
+            }
+
+            .content-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .section-title {
+                font-size: 1.4rem;
+            }
+        }
+
+        /* Custom Scrollbar */
+        .wiki-nav::-webkit-scrollbar,
+        .wiki-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .wiki-nav::-webkit-scrollbar-track,
+        .wiki-content::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+        }
+
+        .wiki-nav::-webkit-scrollbar-thumb,
+        .wiki-content::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 4px;
+        }
+
+        .wiki-nav::-webkit-scrollbar-thumb:hover,
+        .wiki-content::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
-  <nav class="navbar">
-    <div class="nav-container">
-      <div class="nav-logo">
-        <a href="index.html">
-        <h1>NATIONWIDE</h1>
-        </a>
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="nav-logo">
+          <a href="index.html">
+            <h1>NATIONWIDE</h1>
+          </a>
+        </div>
+        <ul class="nav-menu">
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link">Home</a>
+            <ul class="dropdown-menu">
+              <li><a href="index.html#about">About</a></li>
+              <li><a href="index.html#how-to-play">How to Play</a></li>
+              <li><a href="index.html#features">Features</a></li>
+              <li><a href="index.html#join">Join Game</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link">Community</a>
+            <ul class="dropdown-menu">
+              <li><a href="platforms-required.html">Platforms Required</a></li>
+              <li><a href="hall-of-fame.html">Hall of Fame</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link">Resources</a>
+            <ul class="dropdown-menu">
+              <li><a href="new-player-guide.html">New Player Guide</a></li>
+              <li><a href="hosting-guide.html">Hosting Guide</a></li>
+              <li><a href="strategy-tips.html">Strategy Tips</a></li>
+              <li><a href="game-history.html">Game History</a></li>
+              <li><a href="lore.html">Lore</a></li>
+            </ul>
+          </li>
+        </ul>
       </div>
-      <ul class="nav-menu">
-        <!-- HOME dropdown -->
-        <li class="nav-item dropdown">
-          <a href="#" class="nav-link">Home</a>
-          <ul class="dropdown-menu">
-            <li><a href="index.html#about">About</a></li>
-            <li><a href="index.html#how-to-play">How to Play</a></li>
-            <li><a href="index.html#features">Features</a></li>
-            <li><a href="index.html#join">Join Game</a></li>
-          </ul>
-        </li>
+      <div class="reading-progress">
+        <div class="reading-progress-bar" id="progressBar"></div>
+      </div>
+    </nav>
 
-        <!-- COMMUNITY dropdown -->
-        <li class="nav-item dropdown">
-          <a href="#" class="nav-link">Community</a>
-          <ul class="dropdown-menu">
-            <li><a href="platforms-required.html">Platforms Required</a></li>
-            <li><a href="hall-of-fame.html">Hall of Fame</a></li>
-          </ul>
-        </li>
 
-        <!-- RESOURCES dropdown -->
-        <li class="nav-item dropdown">
-          <a href="#" class="nav-link">Resources</a>
-          <ul class="dropdown-menu">
-            <li><a href="new-player-guide.html">New Player Guide</a></li>
-            <li><a href="hosting-guide.html">Hosting Guide</a></li>
-            <li><a href="strategy-tips.html">Strategy Tips</a></li>
-            <li><a href="game-history.html">Game History</a></li>
-            <li><a href="lore.html">Lore</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-  </nav>
-
-    <!-- Main Content Placeholder -->
-    <section id="new-player-guide" class="content">
+    <!-- Main Content -->
+    <section class="content">
         <div class="container">
-            <div class="section-header">
-                <h2>New Player Guide</h2>
+            <div class="wiki-layout">
+                <!-- Sidebar Navigation -->
+                <aside class="wiki-nav">
+                    <h3>Guide Navigation</h3>
+                    
+                    <div class="nav-section">
+                        <div class="nav-section-title active" onclick="toggleSection('section1')">Section I: Gameplay Mechanics</div>
+                        <div class="nav-subsections active" id="section1">
+                            <a href="#introduction" class="nav-link">Introduction</a>
+                            <a href="#joining" class="nav-link">Joining</a>
+                            <a href="#orders" class="nav-link">Orders</a>
+                        </div>
+                    </div>
+
+                    <div class="nav-section">
+                        <div class="nav-section-title" onclick="toggleSection('section2')">Section II: Introductory Mechanics</div>
+                        <div class="nav-subsections" id="section2">
+                            <a href="#geography" class="nav-link">Geography</a>
+                            <a href="#economy" class="nav-link">Economy</a>
+                            <a href="#politics" class="nav-link">Politics</a>
+                            <a href="#infrastructure" class="nav-link">Infrastructure</a>
+                            <a href="#military" class="nav-link">Military</a>
+                            <a href="#species" class="nav-link">Species</a>
+                            <a href="#space" class="nav-link">Space</a>
+                            <a href="#events" class="nav-link">Events</a>
+                            <a href="#expansion" class="nav-link">Expansion</a>
+                            <a href="#technology" class="nav-link">Technology</a>
+                        </div>
+                    </div>
+
+                    <div class="nav-section">
+                        <div class="nav-section-title" onclick="toggleSection('section3')">Section III: Advanced Mechanics</div>
+                        <div class="nav-subsections" id="section3">
+                            <a href="#advanced-geography" class="nav-link">Advanced Geography</a>
+                            <a href="#advanced-economy" class="nav-link">Advanced Economy</a>
+                            <a href="#advanced-politics" class="nav-link">Advanced Politics</a>
+                            <a href="#advanced-infrastructure" class="nav-link">Advanced Infrastructure</a>
+                            <a href="#advanced-military" class="nav-link">Advanced Military</a>
+                            <a href="#advanced-species" class="nav-link">Advanced Species</a>
+                            <a href="#advanced-space" class="nav-link">Advanced Space</a>
+                            <a href="#advanced-expansion" class="nav-link">Advanced Expansion</a>
+                        </div>
+                    </div>
+
+                </aside>
+
+                <!-- Main Content Area -->
+                <main class="wiki-content">
+                    <div class="content-header">
+                        <h1>New Player Guide</h1>
+                        <p>Your comprehensive guide to mastering Nationwide</p>
+                    </div>
+
+                    <!-- Section I: Gameplay Mechanics -->
+                    <div class="wiki-section">
+                        <h2 class="section-title">Section I: Gameplay Mechanics</h2>
+                        
+                        <div class="subsection" id="introduction">
+                            <h3 class="subsection-title">Introduction</h3>
+                            <div class="content-placeholder">Nationwide, in its modern state, is a very unique game, utilizing the relatively simple mechanisms of TPT and turning the game into a play-by-post strategic political intrigue game. Its style and visuals may have changed significantly since its origins several years ago, but its methodology and general gameplay core have remained very similar. The game has been largely expanded beyond the single planet it was constrained to for the first two or three years of the game’s existence and has since entered a whole galaxy where players are setting up multi-system empires. The following document will outline the fundamentals necessary in building your nation, then expand upon those concepts to make the reader a hopefully competent player.</div>
+                        </div>
+
+                        <div class="subsection" id="joining">
+                            <h3 class="subsection-title">Joining</h3>
+                            <div class="content-placeholder">Joining a Nationwide is simple, although it does require a small amount of planning. You must give the host the location of your nation’s capital city, your nation’s name, and the color of your nation if you prefer, in either the comments section of the TPT save or using direct messages over Discord. Some foresight is required; a player should keep the environment and their neighbors in mind, and build plans on how to best exploit or adapt to the conditions that your nation must survive in. Prior knowledge of the rise and fall of real-world nations will give a major advantage, as will competence in other subjects pertinent to the Nationwide core, such as scientific progression and development of infrastructure. <br><br>  <p>Picking the starting place of your nation is one of the most important decisions you can make. Your nation’s location will influence your access to certain resources, trade, economy, and even your ultimate success. When choosing a spot, it is best to keep the geography of the area as well as nearby players or AI-controlled nations, evaluating the general difficulty in the area. For new players, plains or forest environments devoid of close activity is best. Proximity to bodies of water will also aid in obtaining food and will give you the ability to trade with other players along the seas.</p></div>
+                        </div>
+
+                        <div class="subsection" id="orders">
+                            <h3 class="subsection-title">Orders</h3>
+                            <div class="content-placeholder">An order is a comment on the actions that your nation will take, acting as the smallest unit necessary for the continued existence of a nation. Orders are used for anything from peacetime expansion to the beginning development of technology to troop movements during a war; thus, concise, clear, and intelligent orders are necessary for the best outcome for your nation.</div>
+                        </div>
+                    </div>
+
+                    <!-- Section II: Introductory Mechanics -->
+                    <div class="wiki-section">
+                        <h2 class="section-title">Section II: Introductory Mechanics</h2>
+                        
+                        <div class="subsection" id="geography">
+                            <h3 class="subsection-title">Geography</h3>
+                            <div class="content-placeholder"><strong>Temperate biomes</strong>: Temperate biomes provide general security and safety year-round, with a consistently long growing season for most crops, along with warm enough winters for hardier crops to survive. When starting, a temperate biome is a safe choice as its gentle terrain and stable climate will largely eliminate the potential threats caused by food crises or difficult terrain.<br><br>
+
+<strong>Forests</strong>: Thick, dense biomes packed with trees, forests provide ample material for construction throughout along with large amounts of natural food in the form of wildlife and hunting, although not quite as consistent as agriculture in low-technology settings. However, they are still a very friendly biome for newcomers, as they can still support agriculture on a useful scale.<br><br>
+  
+<strong>Wet biomes</strong>: As their name implies, wet biomes are either highly humid or integrated closely with aqueous terrain, such as tropical jungles and swamps. Their ample hydration typically supports a wide variety of crops, although their summers are usually uncomfortably hot. Along with these, wet biomes often host potential vectors for pathogens such as mosquitos, which could act as a threat. Medium difficulty; recommended for those at least slightly experienced with playing.<br><br>
+
+<strong>Barren biomes</strong>: Harsh and unforgiving, barren biomes are typically dry and rocky, incapable of supporting even small-scale agriculture and timber industry due to factors dependent on the biome. Barren biomes are typically dry and are either uncomfortably hot or cold, which both drastically reduce habitability. In low-technology settings, barren biomes are essentially uninhabitable if your people aren’t already acclimated to the environment and best know how to exploit the limited resources. Not recommended for new or low-experienced players.<br><br>
+
+<strong>Cold biomes</strong>: Arguably one of the most difficult biomes, cold biomes are hostile to nearly every form of life. Cold forests, found in slightly less extreme latitudes compared to snow lands, provide some natural food and land, but snow lands are incredibly difficult to conquer from the outside. Snowlands carry no natural food or easily exploitable resources, being desolate polar wastelands. Recommended for experienced players.<br><br>
+
+<strong>Water</strong>: Oceans, lakes, and inland seas can provide major boons when intertwined with the benefits given by land. Fishing can provide a significant extra food source, and sea routes both improve trading and interaction with other nations.
+                          </div>
+                        </div>
+
+                        <div class="subsection" id="economy">
+                            <h3 class="subsection-title">Economy</h3>
+                            <div class="content-placeholder">Arguably the most important part of a nation, the economy is the backbone of all your military and political moves. In Nationwide, you don’t need to worry about the more complicated economic theories and models, as you naturally gain more economic strength, or “wealth”, over time. Of course, you can send orders to help increase your wealth, such as trading with other players, or creating more factories and therefore more resources/wealth. As hosts usually avoid real-life politics (at least, in the wide itself), economic systems based on Capitalism, Socialism, Communism, or any other real-life model do not have large advantages over each other and are generally treated the same way. Keeping in mind your economic situation and growth is the only way you can survive Nationwide. When ordering things, you generally do not want to spend too much of your wealth at one time. However, riskier policies that involved large amounts of spending have worked in the past, generating a significant amount of return and growth.</div>
+                        </div>
+
+                        <div class="subsection" id="politics">
+                            <h3 class="subsection-title">Politics</h3>
+                            <div class="content-placeholder">Maintaining a stable political climate is an essential part of national survival throughout the entire game. There are two primary methods by which a stable political climate is achieved, both through the social policy of the player’s government; either choosing a harsh dictatorship or a libertarian democracy. Both of these methods have been proven reliable for a secure nation with high stability, although the individual nuances of each player’s take on their vision of government alter the results. Systems of the economy (described in the previous subsection) appear to have a small direct impact on national stability, although the economic output is loosely tied to the stability of the nation through factors such as international trade. <br><br> International politics, however, are far more complex than the relative simplicity of national politics, primarily due to the opposing ethos, interests, and goals of other players. There is no such thing as a permanent alliance, only a long-lasting one. The easiest method to survive the killing field of international relations is simply not to get involved, as letting the bigger players cannibalize each other before a hierarchy is clear will allow your existence for longer than a failed war during the chaos. Non-aggression treaties will also assist you, as long as you simply abide by their terms and don’t start pointless wars. Keeping to the sidelines is a surefire way to at least slightly prolong national and international stability and peace. Remember, <strong>LYING IS ALLOWED!</strong> No one can really be trusted.</div>
+                        </div>
+
+                        <div class="subsection" id="infrastructure">
+                            <h3 class="subsection-title">Infrastructure</h3>
+                            <div class="content-placeholder">In Nationwide, you will be expected to expand rather quickly, as land is the key to dominating in the early stages of the game for oh so many reasons. As your nation grows, it will generate strain on your infrastructure. To prevent this, you shall be required to constantly expand and maintain it. Your primary concern will be keeping your road and rail systems up to date. As you progress throughout the game, you shall develop new forms of transportation that will require you to adapt your systems.
+                              
+<br><br><strong>Roads</strong>
+
+<br><br>Roads shall be the first method of transportation you develop. They shall start as paths in the beginning and will develop into dirt roads once you develop the wheel and cart. Your nation can then take things up a notch by replacing your dirt roads within city limits with cobblestone. These roads shall be expensive and will require regular upkeep, thus you should only do this if you have a strong industry. Your nation shall eventually develop asphalt roads with the advent of the automobile. Now that we have discussed roads themselves, we shall now discuss why they are important.
+<br><br>Roads are going to be your main infrastructure artery for the entire game. Without properly maintained roads, your citizens will not be able to effectively travel between cities and your nation’s logistics shall be negatively impacted. It is always a good idea to plan your road systems. Implement highways to ensure effective traffic flow. Roads will also be the link between the consumer and the goods. Without maintained roads, your factories will not be able to supply cities and your army with goods on time, and I don’t think we need to explain what happens then.
+<br><br>Tunnels and bridges are also forms of travel that you will be able to build in the game. Tunnels can be used to connect islands to your mainland or even help protect logistical lines from bombardment. Be aware that they are very expensive and will have to be maintained regularly, even more so during times of war. Bridges are pretty self-explanatory, you build them over rivers to connect both sides. In cities, you can build elevated highways and roads to add even more confusion for tourists.
+
+
+<br><br><strong>Railways</strong> 
+<br><br>Rail shall be the secondary form of transportation for your nation. Whilst offering a more advantageous speed, trains can also carry far more goods than trucks. Do be aware that rail networks are far more complicated than roads and necessitate far more maintenance. A rail disaster will have far more severe consequences on your network than a road accident. Rail networks allow you to alleviate congestion on roads but can create congestion of their own. Like shipping networks, rail transportation requires stations and cargo yards. Stations will allow citizens to board and debark from trains and allow for mail to be transferred between cities, whilst cargo yards will be used by cargo trains. The yards shall be used to transfer goods onto and off of the trains to await transportation to their respective destinations. Cargo yards should be built in industrial heartlands to ease logistical congestion. Smaller yards can be built outside cities as well. Bridges and tunnels can and absolutely should be built for railways and function the same as road tunnels.
+<br><br>Do not have your rail network rely on one line. Branch out your network to provide alternate routes in the event of disaster or bombardment during war. Trains are easy prey to bombs. Giving them armor plating can increase survivability but will not make them immune. Adding anti-aircraft weaponry can help defend against light bombers.
+
+<br><br><strong>Naval Transportation</strong> 
+<br><br>Naval transportation will function on a similar basis as a rail network. Its purpose will be to transport both citizens and cargo to colonies and islands. Passenger ships will need to dock at civilian ports, whilst cargo ships require cargo ports to load/unload their cargo. The two types of ports are usually located close to each other for easier access. Civilian transportation can provide additional revenue for your nation, especially with scenic cruises. A ferry service between islands can also provide a small income. Trading routes are vitally important to your nation’s economy. These are the routes your cargo ships will take to travel between nations. It is important to monitor these routes as they are easy prey for pirates. It is recommended to create a Coast Guard to monitor the routes that are within your nation’s waters to protect the cargo. It is also recommended to make your routes as short and simple as possible, as the longer they are, the longer it will take for your goods to arrive.
+
+<br><br><strong>Aviation</strong> 
+<br><br>Aviation is the final method of transportation you will have planetside. It is a very rapid way of getting your citizens and troops from point A to B but is very expensive compared to the other methods. Airports will act as hubs, allowing passengers to board a large number of flights heading to both local and international destinations. Airports are complex systems, however, and will need security and maintenance. They also provide additional revenue for your nation. It is recommended to implement air marshals, to act as security onboard aircraft to prevent hijackings. Cargo can also be carried by aircraft, thus it is a good idea to build cargo hubs in your larger, and more remote airports. The size of the airport depends on the size of the city. For additional security for your cities, you can build small hangars to house fighter aircraft, and even build anti-aircraft installations around the airfield.
+
+<br><br><strong>Governmental Departments</strong>
+<br><br>Finally, creating a department of transportation will help you plan out your road and rail networks, and a department of public works will aid you in constructing and maintaining them, among other things. A Ministry of Aviation will aid you to handle your airports, and a Department of Maritime Administration will handle ships and ports.
+
+                            </div>
+                        </div>
+
+                        <div class="subsection" id="military">
+                            <h3 class="subsection-title">Military</h3>
+                            <div class="content-placeholder">Like any self-respecting nation-building simulator, a proper army is an essential part of your success in Nationwide. However, a big army isn't always the best army. Contrary to popular belief, throwing thousands of bodies at a problem isn't always the optimal solution (shocking, I know).  Remember, the best military is the one you never have to use. A visible, capable military force is often enough to deter potential aggressors. Diplomatic solutions backed by military power are typically more efficient than outright warfare. War is expensive, both in resources and popular support. Extended conflicts can drain your economy and destabilize your government. That said, sometimes you just gotta blow shit up to have fun. War can be an effective way to acquire resources and generally advance. Assume that all of your allies have a plan to take you down. Just make sure you’re winning more than you’re losing. In general, your military strength depends on several factors: technology, size, training, equipment, and most importantly, how much the host likes you. Kidding. Sort of.
+
+<br><br><strong>Basic Military Development</strong>
+<br><br>Every nation starts with the most primitive military forces, depending on the starting time period of the wide. Your early-game military should focus on establishing a standing army, building defensive structures (walls, watchtowers, and forts), and securing strategic resources. 
+<br><br>As your nation develops, you'll want to build specialized branches of your military:
+<br><br>Land Forces - The backbone of any military. Focus on infantry first, then cavalry (or later, mechanized forces). Don't forget artillery. 
+<br><br>Naval Forces - If you're near water, you’d be very stupid not to develop a navy. Naval dominance equals trade control equals profit equals bigger economy.
+<br><br>Air Forces - Once flight technology is developed, air superiority becomes crucial. It starts with observation balloons, progresses to biplanes, and eventually leads to supersonic jets and stealth technology. The nation that controls the skies generally controls the battlefield.
+<br><br>Special Forces - Elite units with specialized training. These are expensive but can be game-changers in specific scenarios. Commandos, paratroopers, marines, hell, even walking war crime mechs, they all serve specialized purposes that regular forces can't handle.
+
+<br><br><strong>Logistical Considerations</strong>
+<br><br>Building a million-man army means jack shit if you can’t feed them, arm them, or move them where they need to go. A rule of thumb: for every soldier on the front line, you need at least three supporting personnel in the logistical chain. Military logistics includes the following:
+<br><br>Supply chains - Food, water, ammunition, fuel, spare parts, letters from home.
+<br><br>Transportation networks -  Roads, railways, ports, and airfields to move your forces.
+<br><br>Command structure - As your military grows, you need a competent hierarchy to manage it.
+<br><br>Military-industrial complex - Factories to produce weapons, ammunition, vehicles, and equipment.
+
+<br><br><strong>Military Intelligence</strong>
+<br><br>The difference between a good commander and a dead one is intelligence. Developing spy networks, reconnaissance, and counter-intelligence services should be a priority. Information is often more valuable than firepower, and knowing where and when to strike is how you win wars without excessive casualties.
+                            </div>
+                        </div>
+
+                        <div class="subsection" id="species">
+                            <h3 class="subsection-title">Species</h3>
+                            <div class="content-placeholder">A mechanic only introduced very recently, players have been given the freedom to design a species of their own, rather than just playing as a human. This new feature comes with a wide array of complexity and another layer to factor in as one builds their nation and society as they see fit. A current strategy is to make a species excel in one field, in both physical traits and natural capabilities, at the cost of weakening in other areas. This can be manipulated quite quickly if a player knows what they are doing; a weak, frail race can be refined into a perfected war machine with the assistance of technological proficiency, strategic developments in specific areas, and metagame interactions with both other players and the host. The deeper nuances of the feature have yet to be deeply probed, however, and new tactics are bound to emerge as players experiment and develop. </div>
+                        </div>
+
+                        <div class="subsection" id="space">
+                            <h3 class="subsection-title">Space</h3>
+                            <div class="content-placeholder">Content for Space will be added here</div>
+                        </div>
+
+                        <div class="subsection" id="events">
+                            <h3 class="subsection-title">Events</h3>
+                            <div class="content-placeholder">Events, be they caused randomly or by the players, are a mechanic essential to the game, effectively acting as an order on the side of the host (see Section I: Orders), in simpler terms. In more specific terms, they are either the results of player actions or random situations that arise without player intent or knowledge. Being caused by the host, they can range from simplistic situations like a scientific discovery to a full-sized national revolution and alien invasion. The catalyzation, progression, and outcome of an event are typically caused by the actions and reactions of the players it affects, meaning that a quick and calculated reaction to an event typically produces the best results.</div>
+                        </div>
+
+                        <div class="subsection" id="expansion">
+                            <h3 class="subsection-title">Expansion</h3>
+                            <div class="content-placeholder">Expanding your nation is essential to success in Nationwide. A bigger nation means more resources, more population, more production capacity, and ultimately more power. At its core, expansion is about acquiring more land for your nation. There are several methods to achieve this, mainly natural expansion, the most basic form of expansion where you settle unclaimed territories adjacent to your nation. This is the safest method as it typically doesn’t piss off other players. Early in the game, focus on securing territories with valuable resources, arable land, or strategic locations like river crossings, mountain passes, or coastal regions. In addition, as your technology advances, you might gain the ability to establish colonies in distant territories. These require specific infrastructure (ports, roads, etc.) and dedicated resources to maintain. Don’t be the dumbass who establishes colonies they can’t support. Sometimes diplomacy fails, or you just really want that juicy mineral-rich province your neighbor has. Military conquest is a direct but costly approach to expansion. Remember that conquering territory comes with the added challenge of integrating potentially hostile populations and rebuilding war-damaged infrastructure.</div>
+                        </div>
+
+                        <div class="subsection" id="technology">
+                            <h3 class="subsection-title">Technology</h3>
+                            <div class="content-placeholder">Technological progression does not follow a strict tree, unlike most games following this format, which is made possible by the very open-ended style that wides are run by. Progression follows vaguely along the real-world development of technology, up until the Information Age, where speculation largely overtakes reality and new concepts are built by the players. Development of technology is best done in secret, especially during the advent of potentially world-changing technology such as nuclear fission, as the compromisation of your research could provide your enemies with ample resources to overtake you. Information security is vital in the Space Age, as war itself shifts and each player’s machines fight in different ways.</div>
+                        </div>
+                    </div>
+
+                    <!-- Section III: Advanced Mechanics -->
+                    <div class="wiki-section">
+                        <h2 class="section-title">Section III: Advanced Mechanics</h2>
+                        
+                        <div class="subsection" id="advanced-geography">
+                            <h3 class="subsection-title">Advanced Geography</h3>
+                            <div class="content-placeholder">
+                                <p>A: Resource exploitation</p>
+                                <p>B: Biomes</p>
+                                <p>C: Flora and fauna</p>
+                                <p>D: Climate</p>
+                            </div>
+                        </div>
+
+                        <div class="subsection" id="advanced-economy">
+                            <h3 class="subsection-title">Advanced Economy</h3>
+                            <div class="content-placeholder">
+                                <p>A: Benefits and drawbacks of economic policy</p>
+                                <p>B: International trade and commerce</p>
+                            </div>
+                        </div>
+
+                        <div class="subsection" id="advanced-politics">
+                            <h3 class="subsection-title">Advanced Politics</h3>
+                            <div class="content-placeholder">
+                                <p>A: Systems of governance</p>
+                                <p>B: Making friends and enemies</p>
+                                <p>C: International diplomacy</p>
+                                <p>D: Worst-possible scenarios</p>
+                            </div>
+                        </div>
+
+                        <div class="subsection" id="advanced-infrastructure">
+                            <h3 class="subsection-title">Advanced Infrastructure</h3>
+                            <div class="content-placeholder">
+                                <p>A: Necessities of the people</p>
+                                <p>B: State institutions</p>
+                                <p>C: Housing the population</p>
+                            </div>
+                        </div>
+
+                        <div class="subsection" id="advanced-military">
+                            <h3 class="subsection-title">Advanced Military</h3>
+                            <div class="content-placeholder">
+                                <p>A: Strategy</p>
+                                <p>B: The importance of Information</p>
+                                <p>C: Superweapons</p>
+                            </div>
+                        </div>
+
+                        <div class="subsection" id="advanced-species">
+                            <h3 class="subsection-title">Advanced Species</h3>
+                            <div class="content-placeholder">
+                                <p>A: Building your species</p>
+                                <p>B: Advantages and disadvantages</p>
+                                <p>C: Necessities of non-humans</p>
+                            </div>
+                        </div>
+
+                        <div class="subsection" id="advanced-space">
+                            <h3 class="subsection-title">Advanced Space</h3>
+                            <div class="content-placeholder">
+                                <p>A: Colonization</p>
+                                <p>B: FTL Travel</p>
+                                <p>C: Military</p>
+                                <p>D: Terraforming</p>
+                                <p>E: Logistics</p>
+                                <p>F: Communications</p>
+                            </div>
+                        </div>
+
+                        <div class="subsection" id="advanced-expansion">
+                            <h3 class="subsection-title">Advanced Expansion</h3>
+                            <div class="content-placeholder">
+                                <p>A: Territorial dispute</p>
+                                <p>B: Economic and political routes</p>
+                                <p>C: Military routes</p>
+                            </div>
+                        </div>
+                    </div>
+                </main>
             </div>
-            <!-- Basic framework for adding content later -->
-            <p><!-- Content coming soon... --></p>
         </div>
     </section>
 
+    <!-- Quick Navigation Dots -->
+    <div class="quick-nav">
+        <div class="quick-nav-item" data-section="section1"></div>
+        <div class="quick-nav-item" data-section="section2"></div>
+        <div class="quick-nav-item" data-section="section3"></div>
+    </div>
+
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Nationwide</h3>
-                    <p>The ultimate strategic experience.</p>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Game</h4>
-                    <ul>
-                        <li><a href="index.html#about">About</a></li>
-                        <li><a href="index.html#how-to-play">How to Play</a></li>
-                        <li><a href="index.html#features">Features</a></li>
-                        <li><a href="index.html#join">Join</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Community</h4>
-                    <ul>
-                        <li><a href="https://discord.gg/j8HJSxDXvg">Discord</a></li>
-                        <li><a href="https://powdertoy.co.uk/">The Powder Toy</a></li>
-                        <li><a href="new-player-guide.html">Player Guides</a></li>
-                        <li><a href="hall-of-fame.html">Hall of Fame</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Resources</h4>
-                    <ul>
-                        <li><a href="new-player-guide.html">New Player Guide</a></li>
-                        <li><a href="hosting-guide.html">Hosting Guide</a></li>
-                        <li><a href="strategy-tips.html">Strategy Tips</a></li>
-                        <li><a href="game-history.html">Game History</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2025 Nationwide Game Community</p>
-            </div>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3>Nationwide</h3>
+            <p>The ultimate strategic experience.</p>
+          </div>
+          <div class="footer-section">
+            <h4>Game</h4>
+            <ul>
+              <li><a href="index.html#about">About</a></li>
+              <li><a href="index.html#how-to-play">How to Play</a></li>
+              <li><a href="index.html#features">Features</a></li>
+              <li><a href="index.html#join">Join</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>Community</h4>
+            <ul>
+              <li><a href="https://discord.gg/j8HJSxDXvg">Discord</a></li>
+              <li><a href="https://powdertoy.co.uk/">The Powder Toy</a></li>
+              <li><a href="new-player-guide.html">Player Guides</a></li>
+              <li><a href="hall-of-fame.html">Hall of Fame</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>Resources</h4>
+            <ul>
+              <li><a href="new-player-guide.html">New Player Guide</a></li>
+              <li><a href="hosting-guide.html">Hosting Guide</a></li>
+              <li><a href="strategy-tips.html">Strategy Tips</a></li>
+              <li><a href="game-history.html">Game History</a></li>
+            </ul>
+          </div>
         </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 Nationwide Game Community</p>
+        </div>
+      </div>
     </footer>
 
     <script src="js/main.js"></script>
+    <script>
+        // Toggle navigation sections
+        function toggleSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            const title = section.previousElementSibling;
+            
+            section.classList.toggle('active');
+            title.classList.toggle('active');
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    const offset = 90;
+                    const elementPosition = targetElement.offsetTop - offset;
+                    
+                    window.scrollTo({
+                        top: elementPosition,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Update active state
+                    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                }
+            });
+        });
+
+        // Reading progress bar
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            
+            document.getElementById('progressBar').style.width = scrollPercent + '%';
+            
+            // Update quick nav dots
+            const sections = document.querySelectorAll('.wiki-section');
+            const quickNavItems = document.querySelectorAll('.quick-nav-item');
+            
+            sections.forEach((section, index) => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+                    quickNavItems.forEach(item => item.classList.remove('active'));
+                    if (quickNavItems[index]) {
+                        quickNavItems[index].classList.add('active');
+                    }
+                }
+            });
+        });
+
+        // Quick navigation dots click
+        document.querySelectorAll('.quick-nav-item').forEach((item, index) => {
+            item.addEventListener('click', () => {
+                const sections = document.querySelectorAll('.wiki-section');
+                if (sections[index]) {
+                    const offset = 90;
+                    const elementPosition = sections[index].offsetTop - offset;
+                    
+                    window.scrollTo({
+                        top: elementPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Highlight current section in view
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '-20% 0px -70% 0px'
+        };
+
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.id;
+                    const navLink = document.querySelector(`.nav-link[href="#${id}"]`);
+                    if (navLink) {
+                        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                        navLink.classList.add('active');
+                    }
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.subsection').forEach(section => {
+            sectionObserver.observe(section);
+        });
+    </script>
 </body>
 </html>
