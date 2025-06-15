@@ -113,10 +113,24 @@
 
         /* ---------- Players Grid ---------- */
         .players-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 2rem;
+          max-width: 1200px;
+          margin: 0 auto;    
         }
+
+        @media (max-width: 768px) {
+          .players-grid {
+          grid-template-columns: repeat(2, 1fr);
+          }
+        }
+
+        @media (max-width: 480px) {
+          .players-grid {
+          grid-template-columns: 1fr;
+          }
+}
 
         .player-card {
             background: rgba(255, 255, 255, 0.05);
@@ -352,6 +366,21 @@
               </div>
               <div class="player-desc">
                 Veteran player with numerous achievements in the game, known for strategic gameplay, and consistent high performance across multiple Nationwides. NuttyMcNuttzz is recognized for a high percentage of war victories and making significant contributions to the community in general over several years.
+              </div>
+            </div>
+
+            <div class="player-card">
+              <img
+                src="https://cdn.discordapp.com/avatars/751181856195477545/1f720b89f74dd611ec3ecf2d1fa8baf7?size=1024"
+                alt="Kolinski Icon"
+                class="player-icon"
+              />
+              <div class="player-username">Kolinski</div>
+              <div class="player-achievement">
+                <span>Rising Deceiver</span>
+              </div>
+              <div class="player-desc">
+              Found unremarkable and less than an annoyance for the first half of his wide career, Kolinski has begun to make a name for himself by slowly rising up the ranks he was once humiliated by. Defined by his inconsistent and unpredictable strategies and playstyle, he has come a long way since his hatchling days of less then remarkable mental fortitude.
               </div>
             </div>
 

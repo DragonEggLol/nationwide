@@ -4,64 +4,279 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lore - Nationwide</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <meta name="description" content="Explore the lore of the Wides, Empires, and more in the Nationwide universe.">
+    <link rel="icon" href="media/site images/favicon.png" type="image/x-icon">
+    <meta name="keywords" content="Nationwide, lore, history, Wides, Empires, game universe">
+    <meta name="author" content="Nationwide Game Community">
+    <meta content="#b71919" data-react-helmet="true" name="theme-color" />
+    <link rel="icon" href="media/site images/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="media/site images/favicon.png" type="image/x-icon">
+    <meta content="https://www.nationwides.fyi/media/site%20images/favicon.png" property="og:image" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Page-specific Styles -->
+    <style>
+        /* ==========================
+           Lore Page – Scoped Styles
+           ========================== */
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            justify-content: center;
+        }
+        .filters select {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            background: var(--card-bg);
+            color: var(--light-text);
+            font-size: 1rem;
+        }
+        .lore-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        .lore-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .lore-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 212, 170, 0.2);
+        }
+        .lore-item figure {
+            margin: 0;
+        }
+        .lore-item img,
+        .lore-item video {
+            width: 100%;
+            display: block;
+        }
+        .lore-item figcaption {
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            color: var(--gray-text);
+            background: rgba(0,0,0,0.3);
+        }
+        .lore-item .lore-content {
+            padding: 1rem;
+        }
+        .lore-item h3 {
+            margin: 0;
+            font-size: 1.2rem;
+            color: var(--light-text);
+            margin-bottom: 0.5rem;
+        }
+        .lore-item p {
+            font-size: 0.95rem;
+            color: var(--gray-text);
+            line-height: 1.4;
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
-  <nav class="navbar">
-    <div class="nav-container">
-      <div class="nav-logo">
-        <a href="index.html">
-        <h1>NATIONWIDE</h1>
-        </a>
-      </div>
-      <ul class="nav-menu">
-        <!-- HOME dropdown -->
-        <li class="nav-item dropdown">
-          <a href="#" class="nav-link">Home</a>
-          <ul class="dropdown-menu">
-            <li><a href="index.html#about">About</a></li>
-            <li><a href="index.html#how-to-play">How to Play</a></li>
-            <li><a href="index.html#features">Features</a></li>
-            <li><a href="index.html#join">Join Game</a></li>
-          </ul>
-        </li>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html"><h1>NATIONWIDE</h1></a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link">Home</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="index.html#about">About</a></li>
+                        <li><a href="index.html#how-to-play">How to Play</a></li>
+                        <li><a href="index.html#features">Features</a></li>
+                        <li><a href="index.html#join">Join Game</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link">Community</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="platforms-required.html">Platforms Required</a></li>
+                        <li><a href="hall-of-fame.html">Hall of Fame</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link">Resources</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="new-player-guide.html">New Player Guide</a></li>
+                        <li><a href="hosting-guide.html">Hosting Guide</a></li>
+                        <li><a href="strategy-tips.html">Strategy Tips</a></li>
+                        <li><a href="game-history.html">Game History</a></li>
+                        <li><a href="lore.html">Lore</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
-        <!-- COMMUNITY dropdown -->
-        <li class="nav-item dropdown">
-          <a href="#" class="nav-link">Community</a>
-          <ul class="dropdown-menu">
-            <li><a href="platforms-required.html">Platforms Required</a></li>
-            <li><a href="hall-of-fame.html">Hall of Fame</a></li>
-          </ul>
-        </li>
-
-        <!-- RESOURCES dropdown -->
-        <li class="nav-item dropdown">
-          <a href="#" class="nav-link">Resources</a>
-          <ul class="dropdown-menu">
-            <li><a href="new-player-guide.html">New Player Guide</a></li>
-            <li><a href="hosting-guide.html">Hosting Guide</a></li>
-            <li><a href="strategy-tips.html">Strategy Tips</a></li>
-            <li><a href="game-history.html">Game History</a></li>
-            <li><a href="lore.html">Lore</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-  </nav>
-
-    <!-- Main Content Placeholder -->
+    <!-- Lore Section -->
     <section id="lore" class="content">
         <div class="container">
             <div class="section-header">
                 <h2>Lore</h2>
+                <p>Filter through the deep history of the Nationwide universe.</p>
             </div>
-            <!-- Basic framework for adding content later -->
-            <p><!-- Content coming soon... --></p>
+
+            <!-- Filter Controls -->
+            <div class="filters">
+                <select id="wideFilter">
+                    <option value="">All Wides</option>
+                </select>
+                <select id="empireFilter">
+                    <option value="">All Empires</option>
+                </select>
+                <select id="typeFilter">
+                    <option value="">All Types</option>
+                    <option value="places">Places</option>
+                    <option value="wars">Wars</option>
+                    <option value="animals">Animals</option>
+                    <option value="stories">Stories</option>
+                    <option value="people">People</option>
+                </select>
+                <select id="sortOptions">
+                    <option value="title">Sort by Title</option>
+                    <option value="date">Sort by Date</option>
+                </select>
+            </div>
+
+            <!-- Lore Grid -->
+            <div class="lore-grid" id="loreGrid">
+                <article class="lore-item"
+                         data-wide="Nationwide: Galaina"
+                         data-empire="Eternal Empire"
+                         data-type="stories"
+                         data-title="Carpenter's Journal"
+                         data-date="2023-02-09">
+                  <div class="lore-content">
+                    <h3>Carpenter's Journal Pt.0</h3>
+                    <p>I'm a carpenter. Or was, anyway, back at the capital. <br><br>I've always worked with wood, and never anything else.
+
+My wife was gone, and I needed a new start. I took my daughter Kalie with me. I’ve lived in the tribe all my life, and I'd never thought I’d end up living out in the wild.
+
+The government, they gave me a piece of land, saying it was a good opportunity for me and my daughter. They practically begged me, those fuckers. Took the land anyway, though I was hesitant at first, but I figured, why not? It’s not like we had anything else left for us here.
+
+So, I packed up what little we had and set off on our journey. We were determined. Kalie and I worked hard, clearing the land and building a home for ourselves. It was hard work, but I never complained. It was a new life for me. <br><br>
+
+Years passed, and Kalie grew up to be a fine young woman. She was smart, too, much smarter than I ever was. I taught her all I knew about wood, and she quickly surpassed me, working with stone and creating a fusion between the two. I was amazed.
+
+As time went on, we started to build a life for ourselves. We made friends with the other settlers, and even traded goods with the occasional that wandered through the land. They gawked at the sculptures that Kalie created, and soon we had a steady supply of customers.
+
+And so, Kalie and I, we continued to live our lives in the Tundra. We built a community of settlers, and we were happy. 
+
+When I finally pass on, Kalie will be there, to carry on with my legacy.</p>
+                  </div>
+                </article>
+            </div>
+
+            <div class="lore-grid" id="loreGrid">
+                <article class="lore-item"
+                         data-wide="Nationwide: Galaina"
+                         data-empire="Eternal Empire"
+                         data-type="stories"
+                         data-title="Carpenter's Journal Pt.1"
+                         data-date="2023-02-15">
+                  <div class="lore-content">
+                    <h3>Carpenter's Journal Pt.1</h3>
+                    <p>
+Day 1 Journal Entry:<br><br>
+------------------------------------
+<br><br>
+Dear Journal,
+<br><br>
+Never though I'd be writing that. Never been one to keep a diary or a journal, and I've never heard of anyone else that did either, but Kalie insisted that I give it a try. 
+<br><br>
+So, here goes nothing. 
+<br><br>
+Today, like most days, was spent in the workshop. It's not big, but not small either. We had a few orders to fill, and Kalie was busy chiseling away at a new sculpture. I mostly worked on constructing a new set of shelves for the storage room. Been running out of space recently, what with all the new orders.
+<br><br>
+I'm not as quick as I used to be. It's hard to admit that, yes, but it's true. My hands ache the moment I pick up a hammer, and now I take days instead of hours to finish a shelf. I can hardly see without the work glasses.
+<br><br>
+This isn't actually day one. Don't tell her, but I've been skipping these entries for at least a week now. Finally got done doing it, as Kalie has been encouraging me, saying it’s a good way to remember all that we’ve accomplished. And I suppose she’s right. 
+<br><br>
+It’s nice to look back and see how far we’ve come.
+<br><br>
+Well, I guess that's it for today. </p>
+                  </div>
+                </article>
+            </div>
+
+            <div class="lore-grid" id="loreGrid">
+                <article class="lore-item"
+                         data-wide="Nationwide: Galaina"
+                         data-empire="Eternal Empire"
+                         data-type="stories"
+                         data-title="Carpenter's Journal Pt.2"
+                         data-date="2023-02-16">
+                  <div class="lore-content">
+                    <h3>Carpenter's Journal Pt.2</h3>
+                    <p>
+Day 2 Journal Entry:<br><br>
+------------------------------------
+<br><br>
+Dear Journal,
+<br><br>
+Day two of my attempt at journaling. Is that a word?
+<br><br>
+Anyway, still not entirely sure on what to write. Kalie said it's important to document even the most mundane things, but there's really not much out here to write about. 
+<br><br>
+We woke up early today and had a simple breakfast. We have enough food to keep on going for another two months at least before I have to go trade again. Just had some porridge and dried fruits. 
+<br><br>
+A couple of travelers passing through, looking for some supplies. Didn't have anything, and they bid us goodbye.
+<br><br>
+By midday, I was feeling exhausted and took a break in the shade to rest for a bit. That's when Kalie came over to show me what she had been working on. It was a sculpture of a bird, carved from a single piece of wood. The details were impressive, much better than what I could've ever done, even at my prime. I didn't have the heart to tell her that she missed a spot on the legs. 
+<br><br>
+We finished up our work for the day and ate some fish I caught earlier this week. It was good, I guess, though we ran out of spices.
+<br><br>
+As I write this, Kalie is still in the workshop, putting the finishing touches on her bird sculpture. Maybe she'll finish it by tomorrow.
+<br><br>
+That's it, really.</p>
+                  </div>
+                </article>
+            </div>
+
+            <div class="lore-grid" id="loreGrid">
+                <article class="lore-item"
+                         data-wide="Nationwide: Galaina"
+                         data-empire="Eternal Empire"
+                         data-type="stories"
+                         data-title="Carpenter's Journal Pt.3"
+                         data-date="2023-03-06">
+                  <div class="lore-content">
+                    <h3>Carpenter's Journal Pt.3</h3>
+                    <p>
+Day 3 Journal Entry:<br><br>
+------------------------------------
+<br><br>
+Dear Journal,
+<br><br>
+It's entry three, and I'm starting to get the hang of this diary writing thing. Granted, I missed several weeks or so, so I guess now its time for catchup. 
+<br><br>
+Three days after my last journal entry, we woke up to a loud noise coming from the workshop. One of the old had collapsed, due to the wood rotting. A given due to the age of it, but a mess nevertheless. Thankfully, though, no one was hurt, and we only lost some of the tools. We spent the morning cleaning up the debris and trying to salvage what we could.
+<br><br>
+After the clean-up, I decided to take Kalie to the nearby town to purchase some new tools and to relax. I went to the dairyman, and traded some sculptures with him to obtain his goods. Kalie spilled some milk on me! I think that was the first time I've laughed in a while. 
+<br><br>
+All things were not what they seemed, however. 
+<br><br>
+After purchasing some more tools to replace the ones we lost, we made our way back when we saw that some group of travelers had stopped at the road in front of our property. They were armed and aggressive, demanding that we give them our food. We tried to reason with them, but they drew their swords. 
+<br><br>
+We had some weapons of our own, but we were outnumbered. I gave them the purchased food and tools, and sent them on their way. Those may have been expensive, but our lives even more so. 
+<br><br>
+I barely have the energy to continue writing this journal. As for wise words, I have none. All I know is that whatever tomorrow will bring, we'll be ready for whatever comes our way.</p>
+                  </div>
+                </article>
+            </div>
+
         </div>
     </section>
 
@@ -73,7 +288,6 @@
                     <h3>Nationwide</h3>
                     <p>The ultimate strategic experience.</p>
                 </div>
-                
                 <div class="footer-section">
                     <h4>Game</h4>
                     <ul>
@@ -83,17 +297,13 @@
                         <li><a href="index.html#join">Join</a></li>
                     </ul>
                 </div>
-                
                 <div class="footer-section">
                     <h4>Community</h4>
                     <ul>
                         <li><a href="https://discord.gg/j8HJSxDXvg">Discord</a></li>
-                        <li><a href="https://powdertoy.co.uk/">The Powder Toy</a></li>
-                        <li><a href="new-player-guide.html">Player Guides</a></li>
                         <li><a href="hall-of-fame.html">Hall of Fame</a></li>
                     </ul>
                 </div>
-                
                 <div class="footer-section">
                     <h4>Resources</h4>
                     <ul>
@@ -104,13 +314,97 @@
                     </ul>
                 </div>
             </div>
-            
             <div class="footer-bottom">
                 <p>&copy; 2025 Nationwide Game Community</p>
             </div>
         </div>
     </footer>
 
-    <script src="js/main.js"></script>
+    <!-- Page Script: Filters & Sorting -->
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // grab everything once
+      const items       = Array.from(document.querySelectorAll('.lore-item'));
+      const wideFilter  = document.getElementById('wideFilter');
+      const empireFilter= document.getElementById('empireFilter');
+      const typeFilter  = document.getElementById('typeFilter');
+      const sortOptions = document.getElementById('sortOptions');
+      const grid        = document.getElementById('loreGrid');
+
+      // ──────────── 1) BADGE INJECTION ────────────
+      items.forEach(item => {
+        const { wide, empire, type, date } = item.dataset;
+        // build badge wrapper
+        const wrapper = document.createElement('div');
+        wrapper.className = 'badge-container';
+        [
+          { txt: wide,   cls: 'badge-wide'   },
+          { txt: empire, cls: 'badge-empire' },
+          { txt: type.charAt(0).toUpperCase() + type.slice(1), cls: 'badge-type' },
+          { txt: new Date(date).toLocaleDateString(),         cls: 'badge-date' }
+        ].forEach(({ txt, cls }) => {
+          const b = document.createElement('span');
+          b.className   = `badge ${cls}`;
+          b.textContent = txt;
+          wrapper.appendChild(b);
+        });
+        // insert *after* the <h3> title, not above it
+        const titleEl = item.querySelector('.lore-content h3');
+        if (titleEl) titleEl.insertAdjacentElement('afterend', wrapper);
+      });
+
+      // ──────────── 2) FILTER POPULATION ────────────
+      // (rebuild Wides & Empires dropdowns)
+      const wides   = new Set(items.map(i => i.dataset.wide).filter(Boolean));
+      const empires = new Set(items.map(i => i.dataset.empire).filter(Boolean));
+
+      wideFilter.innerHTML   = '<option value="">All Wides</option>';
+      empireFilter.innerHTML = '<option value="">All Empires</option>';
+
+      wides.forEach(w => {
+        const o = document.createElement('option');
+        o.value = w; o.textContent = w;
+        wideFilter.appendChild(o);
+      });
+      empires.forEach(e => {
+        const o = document.createElement('option');
+        o.value = e; o.textContent = e;
+        empireFilter.appendChild(o);
+      });
+
+      // ──────────── 3) FILTER & SORT LOGIC ────────────
+      function filterItems() {
+        const wVal = wideFilter.value;
+        const eVal = empireFilter.value;
+        const tVal = typeFilter.value;
+        items.forEach(item => {
+          const ok = (!wVal || item.dataset.wide   === wVal)
+                  && (!eVal || item.dataset.empire === eVal)
+                  && (!tVal || item.dataset.type   === tVal);
+          item.style.display = ok ? '' : 'none';
+        });
+      }
+
+      function sortItems() {
+        const crit = sortOptions.value;
+        const sorted = items.slice().sort((a, b) => {
+          if (crit === 'date') {
+            return new Date(b.dataset.date) - new Date(a.dataset.date);
+          }
+          return a.dataset.title.localeCompare(b.dataset.title);
+        });
+        sorted.forEach(i => grid.appendChild(i));
+      }
+
+      // ──────────── 4) WIRE & BOOT ────────────
+      [wideFilter, empireFilter, typeFilter].forEach(el =>
+        el.addEventListener('change', () => { filterItems(); sortItems(); })
+      );
+      sortOptions.addEventListener('change', sortItems);
+
+      filterItems();
+      sortItems();
+    });
+    </script>
 </body>
 </html>
