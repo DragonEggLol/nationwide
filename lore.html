@@ -12,7 +12,7 @@
     <link rel="icon" href="media/site images/favicon.png" type="image/x-icon">
     <link rel="shortcut icon" href="media/site images/favicon.png" type="image/x-icon">
     <meta content="https://www.nationwides.fyi/media/site%20images/favicon.png" property="og:image" />
-        <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
@@ -47,6 +47,7 @@
             border-radius: 12px;
             overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: default;
         }
         .lore-item:hover {
             transform: translateY(-5px);
@@ -54,17 +55,24 @@
         }
         .lore-item figure {
             margin: 0;
+            position: relative;
         }
         .lore-item img,
         .lore-item video {
             width: 100%;
             display: block;
+            height: 200px;
+            object-fit: cover;
         }
         .lore-item figcaption {
             padding: 0.5rem 1rem;
             font-size: 0.9rem;
             color: var(--gray-text);
             background: rgba(0,0,0,0.3);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
         }
         .lore-item .lore-content {
             padding: 1rem;
@@ -79,6 +87,130 @@
             font-size: 0.95rem;
             color: var(--gray-text);
             line-height: 1.4;
+        }
+        
+        /* PDF Lore Item Styles */
+        .lore-item-pdf {
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .lore-item-pdf::before {
+            content: '📄';
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 2rem;
+            z-index: 1;
+        }
+        
+        .pdf-indicator {
+            background: var(--primary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            text-align: center;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        
+        .pdf-indicator::before {
+            content: '📑';
+            font-size: 1.2rem;
+        }
+        
+        /* Modal Styles */
+        .pdf-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            padding: 2rem;
+        }
+        
+        .pdf-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .pdf-modal-content {
+            width: 100%;
+            height: 100%;
+            max-width: 1200px;
+            max-height: 90vh;
+            background: var(--dark-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .pdf-modal-header {
+            background: var(--darker-bg);
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .pdf-modal-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--light-text);
+        }
+        
+        .pdf-close-btn {
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+        
+        .pdf-close-btn:hover {
+            background: var(--secondary-dark);
+        }
+        
+        .pdf-embed-container {
+            flex: 1;
+            width: 100%;
+            background: #525659;
+        }
+        
+        .pdf-embed {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* Image-only lore item styles */
+        .lore-item-image .lore-content {
+            padding: 0.75rem 1rem;
+        }
+        
+        .lore-item-image h3 {
+            margin-bottom: 0;
+        }
+        
+        .lore-item-image figure {
+            margin-bottom: 0;
+        }
+        
+        /* Badge adjustments */
+        .badge-container {
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
         }
     </style>
 </head>
@@ -144,6 +276,7 @@
                     <option value="stories">Stories</option>
                     <option value="people">People</option>
                     <option value="communications">Communications</option>
+                    <option value="documents">Documents</option>
                 </select>
                 <select id="sortOptions">
                     <option value="title">Sort by Title</option>
@@ -153,6 +286,40 @@
 
             <!-- Lore Grid -->
             <div class="lore-grid" id="loreGrid">
+                <!-- Image Example -->
+                <article class="lore-item lore-item-image"
+                         data-wide="Nationwide: Galaina"
+                         data-empire="Eternal Empire"
+                         data-type="places"
+                         data-title="Eternal Empire Desert"
+                         data-date="2024-01-30">
+                    <figure>
+                        <img src="media/site images/eternal-desert.png" alt="Eternal Empire Desert">
+                        <figcaption>The red sands east of Eternal lands.</figcaption>
+                    </figure>
+                    <div class="lore-content">
+                        <h3>Eternal Empire Deserts</h3>
+                    </div>
+                </article>
+
+                <!-- PDF Example -->
+                <article class="lore-item lore-item-pdf"
+                         data-wide="Nationwide: Galaina"
+                         data-empire="N/A"
+                         data-type="documents"
+                         data-title="Magicules™, A Guide for Idiots"
+                         data-date="2024-11-20"
+                         data-pdf-url="https://nationwides.fyi/media/site documents/Magicules Guide.pdf">
+                    <div class="pdf-indicator">
+                        Click to Open PDF Document
+                    </div>
+                    <div class="lore-content">
+                        <h3>Magicules™, A Guide for Idiots</h3>
+                        <p>A guide for the main magic system found in Nationwide: Galaina. This document contains 4 pages of details.</p>
+                    </div>
+                </article>
+
+                <!-- Original text entries -->
                 <article class="lore-item"
                          data-wide="Nationwide: Galaina"
                          data-empire="Eternal Empire"
@@ -163,9 +330,9 @@
                     <h3>Carpenter's Journal Pt.0</h3>
                     <p>I'm a carpenter. Or was, anyway, back at the capital. <br><br>I've always worked with wood, and never anything else.
 
-My wife was gone, and I needed a new start. I took my daughter Kalie with me. I’ve lived in the tribe all my life, and I'd never thought I’d end up living out in the wild.
+My wife was gone, and I needed a new start. I took my daughter Kalie with me. I've lived in the tribe all my life, and I'd never thought I'd end up living out in the wild.
 
-The government, they gave me a piece of land, saying it was a good opportunity for me and my daughter. They practically begged me, those fuckers. Took the land anyway, though I was hesitant at first, but I figured, why not? It’s not like we had anything else left for us here.
+The government, they gave me a piece of land, saying it was a good opportunity for me and my daughter. They practically begged me, those fuckers. Took the land anyway, though I was hesitant at first, but I figured, why not? It's not like we had anything else left for us here.
 
 So, I packed up what little we had and set off on our journey. We were determined. Kalie and I worked hard, clearing the land and building a home for ourselves. It was hard work, but I never complained. It was a new life for me. <br><br>
 
@@ -178,9 +345,7 @@ And so, Kalie and I, we continued to live our lives in the Tundra. We built a co
 When I finally pass on, Kalie will be there, to carry on with my legacy.</p>
                   </div>
                 </article>
-            </div>
 
-            <div class="lore-grid" id="loreGrid">
                 <article class="lore-item"
                          data-wide="Nationwide: Galaina"
                          data-empire="Eternal Empire"
@@ -203,16 +368,14 @@ Today, like most days, was spent in the workshop. It's not big, but not small ei
 <br><br>
 I'm not as quick as I used to be. It's hard to admit that, yes, but it's true. My hands ache the moment I pick up a hammer, and now I take days instead of hours to finish a shelf. I can hardly see without the work glasses.
 <br><br>
-This isn't actually day one. Don't tell her, but I've been skipping these entries for at least a week now. Finally got done doing it, as Kalie has been encouraging me, saying it’s a good way to remember all that we’ve accomplished. And I suppose she’s right. 
+This isn't actually day one. Don't tell her, but I've been skipping these entries for at least a week now. Finally got done doing it, as Kalie has been encouraging me, saying it's a good way to remember all that we've accomplished. And I suppose she's right. 
 <br><br>
-It’s nice to look back and see how far we’ve come.
+It's nice to look back and see how far we've come.
 <br><br>
 Well, I guess that's it for today. </p>
                   </div>
                 </article>
-            </div>
 
-            <div class="lore-grid" id="loreGrid">
                 <article class="lore-item"
                          data-wide="Nationwide: Galaina"
                          data-empire="Eternal Empire"
@@ -244,9 +407,7 @@ As I write this, Kalie is still in the workshop, putting the finishing touches o
 That's it, really.</p>
                   </div>
                 </article>
-            </div>
 
-            <div class="lore-grid" id="loreGrid">
                 <article class="lore-item"
                          data-wide="Nationwide: Galaina"
                          data-empire="Eternal Empire"
@@ -276,18 +437,16 @@ We had some weapons of our own, but we were outnumbered. I gave them the purchas
 I barely have the energy to continue writing this journal. As for wise words, I have none. All I know is that whatever tomorrow will bring, we'll be ready for whatever comes our way.</p>
                   </div>
                 </article>
-            </div>
 
-            <div class="lore-grid" id="loreGrid">
-   <article class="lore-item"
-            data-wide="Nationwide: Galaina"
-            data-empire="Triklia Sanctum"
-            data-type="communications"
-            data-title="Inquired Updates"
-            data-date="2025-01-06">
-     <div class="lore-content">
-       <h3>Inquired Updates</h3>
-       <p>
+                <article class="lore-item"
+                         data-wide="Nationwide: Galaina"
+                         data-empire="Triklia Sanctum"
+                         data-type="communications"
+                         data-title="Inquired Updates"
+                         data-date="2025-01-06">
+                  <div class="lore-content">
+                    <h3>Inquired Updates</h3>
+                    <p>
 <strong>URGENCY:</strong> Urgent <strong><br><br>RECIPIENT:</strong> Klar' Novorka<br><br> <strong>SENDER:</strong> Nov' Kviene <br><br><strong>DATE:</strong> Inkspill
 <br><br>
 <strong>1.</strong> Latest clash with the Order near the "Train Fort" (as proclaimed by the memories of a thrall) has ended with a success.
@@ -313,12 +472,24 @@ By the Authority of the Ivory Council, The Seer, Head of Communication and Ruler
 -<strong>Ruler of the Town of Nov' Svhana, Mhareyn of the Town of Nov' Svhana</strong>
 <br><br>
 <em>A unknown seal, guessed to be the private seal of "Nov' Kviene"</em></p>
-     </div>
-   </article>
-</div>
-            
+                  </div>
+                </article>
+            </div>
         </div>
     </section>
+
+    <!-- PDF Modal -->
+    <div class="pdf-modal" id="pdfModal">
+        <div class="pdf-modal-content">
+            <div class="pdf-modal-header">
+                <h3 class="pdf-modal-title" id="pdfModalTitle">Document Viewer</h3>
+                <button class="pdf-close-btn" onclick="closePdfModal()">Close</button>
+            </div>
+            <div class="pdf-embed-container">
+                <iframe class="pdf-embed" id="pdfEmbed" src="" title="PDF Viewer"></iframe>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -362,6 +533,37 @@ By the Authority of the Ivory Council, The Seer, Head of Communication and Ruler
 
     <!-- Page Script: Filters & Sorting -->
     <script>
+    // PDF Modal Functions
+    function openPdfModal(pdfUrl, title) {
+        const modal = document.getElementById('pdfModal');
+        const embed = document.getElementById('pdfEmbed');
+        const modalTitle = document.getElementById('pdfModalTitle');
+        
+        modalTitle.textContent = title;
+        embed.src = pdfUrl;
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closePdfModal() {
+        const modal = document.getElementById('pdfModal');
+        const embed = document.getElementById('pdfEmbed');
+        
+        modal.classList.remove('active');
+        embed.src = '';
+        document.body.style.overflow = '';
+    }
+
+    // Close modal on escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closePdfModal();
+    });
+
+    // Close modal on background click
+    document.getElementById('pdfModal').addEventListener('click', (e) => {
+        if (e.target === e.currentTarget) closePdfModal();
+    });
+
     document.addEventListener('DOMContentLoaded', () => {
       // grab everything once
       const items       = Array.from(document.querySelectorAll('.lore-item'));
@@ -391,6 +593,16 @@ By the Authority of the Ivory Council, The Seer, Head of Communication and Ruler
         // insert *after* the <h3> title, not above it
         const titleEl = item.querySelector('.lore-content h3');
         if (titleEl) titleEl.insertAdjacentElement('afterend', wrapper);
+
+        // Add PDF click handler
+        if (item.classList.contains('lore-item-pdf')) {
+            item.addEventListener('click', () => {
+                const pdfUrl = item.dataset.pdfUrl;
+                const title = item.dataset.title;
+                if (pdfUrl) openPdfModal(pdfUrl, title);
+            });
+            item.style.cursor = 'pointer';
+        }
       });
 
       // ──────────── 2) FILTER POPULATION ────────────
