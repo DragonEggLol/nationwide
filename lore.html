@@ -121,6 +121,17 @@
             font-size: 1.2rem;
         }
         
+        /* External PDF indicator */
+        .pdf-external .pdf-indicator {
+            background: var(--secondary-color);
+        }
+        
+        .pdf-external .pdf-indicator::after {
+            content: ' (Opens in new tab)';
+            font-size: 0.8rem;
+            opacity: 0.9;
+        }
+        
         /* Modal Styles */
         .pdf-modal {
             display: none;
@@ -276,6 +287,7 @@
                     <option value="stories">Stories</option>
                     <option value="people">People</option>
                     <option value="communications">Communications</option>
+                    <option value="artifacts">Artifacts</option>
                     <option value="documents">Documents</option>
                 </select>
                 <select id="sortOptions">
@@ -535,14 +547,20 @@ By the Authority of the Ivory Council, The Seer, Head of Communication and Ruler
     <script>
     // PDF Modal Functions
     function openPdfModal(pdfUrl, title) {
-        const modal = document.getElementById('pdfModal');
-        const embed = document.getElementById('pdfEmbed');
-        const modalTitle = document.getElementById('pdfModalTitle');
-        
-        modalTitle.textContent = title;
-        embed.src = pdfUrl;
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
+        // For PDFs on the same domain, use the modal
+        if (pdfUrl.includes(window.location.hostname) || pdfUrl.startsWith('/') || pdfUrl.startsWith('./')) {
+            const modal = document.getElementById('pdfModal');
+            const embed = document.getElementById('pdfEmbed');
+            const modalTitle = document.getElementById('pdfModalTitle');
+            
+            modalTitle.textContent = title;
+            embed.src = pdfUrl;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        } else {
+            // For external PDFs, open in a new tab to avoid X-Frame-Options issues
+            window.open(pdfUrl, '_blank');
+        }
     }
 
     function closePdfModal() {
@@ -599,7 +617,14 @@ By the Authority of the Ivory Council, The Seer, Head of Communication and Ruler
             item.addEventListener('click', () => {
                 const pdfUrl = item.dataset.pdfUrl;
                 const title = item.dataset.title;
-                if (pdfUrl) openPdfModal(pdfUrl, title);
+                if (pdfUrl) {
+                    // Check if PDF is external
+                    const isExternal = pdfUrl.startsWith('http') && !pdfUrl.includes(window.location.hostname);
+                    if (isExternal) {
+                        item.classList.add('pdf-external');
+                    }
+                    openPdfModal(pdfUrl, title);
+                }
             });
             item.style.cursor = 'pointer';
         }
