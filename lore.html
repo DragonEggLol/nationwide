@@ -214,7 +214,51 @@
             margin-top: 0.5rem;
             margin-bottom: 0.5rem;
         }
+
+        /* ===========================
+           ░ Lore Generator Styles ░
+           =========================== */
+        .floating-btn{
+            position:fixed; bottom:2rem; right:2rem; z-index:1500;
+            padding:0.9rem 1.4rem; border-radius:50px; font-size:1.25rem; font-weight:700;
+            background:var(--primary-color); color:#fff; border:none; cursor:pointer;
+            box-shadow:0 10px 25px rgba(0,212,170,.35); transition:transform 0.2s ease;
+        }
+        .floating-btn:hover{ transform:scale(1.05); }
+
+        .generator-modal{ position:fixed; inset:0; background:rgba(0,0,0,.85); display:none; align-items:center; justify-content:center; z-index:2001; padding:2rem; }
+        .generator-modal.active{ display:flex; }
+        .gen-window{ width:100%; max-width:700px; background:var(--dark-bg); border:1px solid var(--border-color); border-radius:12px; padding:2rem; overflow-y:auto; max-height:90vh; }
+        .gen-header{ display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; }
+        .gen-header h3{ margin:0; color:var(--accent-color); }
+        .btn-secondary.small{ padding:0.35rem 0.75rem; font-size:0.85rem; background:var(--border-color); color:var(--light-text); border:none; border-radius:4px; cursor:pointer; }
+        .gen-grid{ display:grid; gap:1rem; grid-template-columns:1fr 1fr; }
+        .gen-grid label{ display:flex; flex-direction:column; font-size:0.9rem; color:var(--gray-text); }
+        .gen-grid input, .gen-grid textarea, .gen-grid select{ padding:0.5rem 1rem; border:1px solid var(--border-color); border-radius:6px; background:var(--card-bg); color:var(--light-text); }
+        #generatedCode{ width:100%; height:240px; margin-top:0.5rem; background:#101522; color:#00d4aa; border:1px solid var(--border-color); border-radius:6px; padding:1rem; font-family:monospace; white-space:pre; }
+        .full{ width:100%; margin-top:0.5rem; }
+        .conditional{ display:none; grid-column:span 2; }
+        body[data-loretype="places"]     .conditional[data-for="places"],
+        body[data-loretype="documents"]  .conditional[data-for="documents"],
+        body[data-loretype="stories"]    .conditional[data-for="stories"]{ display:block; }
+        @media(max-width:600px){ .gen-grid{ grid-template-columns:1fr; } }
     </style>
+
+<style>
+    .gen-grid select {
+        padding: 0.5rem 1rem;
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        background: var(--card-bg);
+        color: var(--light-text);
+    }
+    
+    .gen-grid select option {
+        background: var(--card-bg);
+        color: var(--light-text);
+    }
+</style>
+
 </head>
 <body>
     <!-- Navigation -->
@@ -285,6 +329,9 @@
                 </select>
             </div>
 
+            <!-- Floating generator trigger -->
+            <button id="openGenerator" class="floating-btn" title="Create lore entry">➕</button>
+
             <!-- Lore Grid -->
             <div class="lore-grid" id="loreGrid">
                 <!-- Image -->
@@ -302,8 +349,8 @@
                         <h3>Eternal Empire Deserts</h3>
                     </div>
                 </article>
-
-                <article class="lore-item lore-item-image"
+                
+                                <article class="lore-item lore-item-image"
                          data-wide="Nationwide: Galaina"
                          data-empire="Eternal Empire"
                          data-type="places"
@@ -520,6 +567,7 @@ By the Authority of the Ivory Council, The Seer, Head of Communication and Ruler
 <em>A unknown seal, guessed to be the private seal of "Nov' Kviene"</em></p>
                   </div>
                 </article>
+                
             </div>
         </div>
     </section>
@@ -536,6 +584,67 @@ By the Authority of the Ivory Council, The Seer, Head of Communication and Ruler
             </div>
         </div>
     </div>
+
+    <!-- ░░░ Lore Generator Modal ░░░ -->
+<div class="generator-modal" id="generatorModal">
+    <div class="gen-window">
+        <header class="gen-header">
+            <h3>Create Lore Entry</h3>
+            <button id="closeGenerator" class="btn-secondary small">✕</button>
+        </header>
+
+        <form id="loreForm" autocomplete="off">
+            <div class="gen-grid">
+                <label>Title <input name="title" required></label>
+                <label>Date <input name="date" type="date" required></label>
+                <label>Wide <input name="wide" placeholder="Nationwide: Galaina"></label>
+                <label>Empire <input name="empire" placeholder="Eternal Empire"></label>
+
+                <label>Content Type
+                    <select name="contentType" id="contentTypeSelect">
+                        <option value="places">Places</option>
+                        <option value="wars">Wars</option>
+                        <option value="animals">Animals</option>
+                        <option value="stories">Stories</option>
+                        <option value="people">People</option>
+                        <option value="communications">Communications</option>
+                        <option value="documents">Documents</option>
+                    </select>
+                </label>
+
+                <label>Format
+                    <select name="type" id="typeSelect">
+                        <option value="stories">Text</option>
+                        <option value="places">Image</option>
+                        <option value="documents">PDF</option>
+                    </select>
+                </label>
+
+                <!-- Image fields -->
+                <div class="conditional" data-for="places">
+                    <label>Image file name <input name="imgName" placeholder="eternal-desert.png"></label>
+                    <label>Caption <input name="caption"></label>
+                </div>
+
+                <!-- PDF fields -->
+                <div class="conditional" data-for="documents">
+                    <label>PDF file name <input name="pdfName" placeholder="document-name.pdf"></label>
+                    <label>Short summary <textarea name="summary"></textarea></label>
+                </div>
+
+                <!-- Text fields -->
+                <div class="conditional" data-for="stories">
+                    <label>Body <textarea name="body" rows="6"></textarea></label>
+                </div>
+            </div>
+
+            <button class="full" type="submit">Generate HTML</button>
+        </form>
+
+        <h4 style="margin-top:1.5rem">Copy &amp; paste this into the lore grid:</h4>
+        <textarea id="generatedCode" readonly></textarea>
+    </div>
+</div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -716,5 +825,54 @@ By the Authority of the Ivory Council, The Seer, Head of Communication and Ruler
       sortItems();
     });
     </script>
+
+    <!-- ═══ Generator logic ══════════════════════════════ -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const openBtn   = document.getElementById('openGenerator');
+  const modal     = document.getElementById('generatorModal');
+  const closeBtn  = document.getElementById('closeGenerator');
+  const form      = document.getElementById('loreForm');
+  const codeBox   = document.getElementById('generatedCode');
+  const typeSel   = document.getElementById('typeSelect');
+  const contentTypeSel = document.getElementById('contentTypeSelect');
+
+  function toggleModal(show){
+    modal.classList.toggle('active', show);
+    document.body.style.overflow = show ? 'hidden' : '';
+  }
+
+  openBtn.addEventListener('click', () => toggleModal(true));
+  closeBtn.addEventListener('click', () => toggleModal(false));
+  modal.addEventListener('click', e => { if (e.target === modal) toggleModal(false); });
+
+  typeSel.addEventListener('change', e => {
+    document.body.dataset.loretype = e.target.value;
+  });
+  document.body.dataset.loretype = typeSel.value;
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const d = Object.fromEntries(new FormData(form).entries());
+    const common = `data-wide="${d.wide||'N/A'}" data-empire="${d.empire||'N/A'}" data-type="${d.contentType}" data-title="${d.title}" data-date="${d.date}"`;
+    let article = '';
+    
+    if (d.type === 'places') {
+      article = `\n<article class=\"lore-item lore-item-image\" ${common}>\n  <figure>\n    <img src=\"media/site images/${d.imgName}\" alt=\"${d.title}\">\n    <figcaption>${d.caption||''}</figcaption>\n  </figure>\n  <div class=\"lore-content\"><h3>${d.title}</h3></div>\n</article>`;
+    } else if (d.type === 'documents') {
+      const pdfUrl = `site%20documents/${d.pdfName}`;
+      article = `\n<article class=\"lore-item lore-item-pdf\" ${common} data-pdf-url=\"${pdfUrl}\">\n  <div class=\"pdf-indicator\">Click to Open PDF Document</div>\n  <div class=\"lore-content\"><h3>${d.title}</h3><p>${d.summary||''}</p></div>\n</article>`;
+    } else {
+      const body = (d.body||'').replace(/\n/g,'<br>');
+      article = `\n<article class=\"lore-item\" ${common}>\n  <div class=\"lore-content\"><h3>${d.title}</h3><p>${body}</p></div>\n</article>`;
+    }
+    
+    codeBox.value = article.trim();
+    navigator.clipboard.writeText(article.trim()).then(() => {
+      alert('HTML snippet generated and copied to clipboard!');
+    });
+  });
+});
+</script>
 </body>
 </html>
