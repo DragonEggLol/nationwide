@@ -765,13 +765,3 @@ section {
 .badge-empire  { background-color: #c2410c; } /* orange */
 .badge-type    { background-color: #2563eb; } /* blue */
 .badge-date    { background-color: #374151; } /* gray */
-
-.gen-grid select {
-  background: var(--darker-bg);
-  color:    var(--light-text);
-  appearance: none;
-}
-.gen-grid select option {
-  background-color: var(--darker-bg) !important;
-  color:            var(--light-text) !important;
-}
