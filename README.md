@@ -48,7 +48,7 @@ Nationwide is a **play-by-post** strategy game where you guide a civilization fr
   Forge alliances, betray neighbors, and co-author an ever-expanding story. Every map, lore entry, and diplomatic twist comes from players.  
 
 - **Visual Experience**  
-  Interactive maps, lore galleries, and PDF guides bring your civilization to life. Check out our [Lore Gallery](https://www.nationwides.fyi/lore.html) for artwork like the **The Pinnacle of Edir** ![The Pinnacle of Edir](https://www.nationwides.fyi/media/site%20images/pinnacle-of-edir.png)  
+  Interactive maps, lore galleries, and PDF guides bring your civilization to life. Check out our [Lore Gallery](https://www.nationwides.fyi/lore.html) for artwork like the **Eternal Empire Deserts** ![Eternal Empire Desert](https://www.nationwides.fyi/media/site%20images/eternal-desert.png)  
 
 - **Custom Tools**  
   Nationwider—a mapping solution—lets hosts craft world maps and generate save files seamlessly.  
