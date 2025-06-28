@@ -32,7 +32,7 @@ A play-by-post strategic galactic game built on The Powder Toy (TPT), Discord, a
 
 ## 📖 About
 
-Nationwide is a **play-by-post** strategy game where you guide a civilization from humble beginnings to galactic domination. Hosted via [The Powder Toy (TPT)](https://powdertoy.co.uk/) saves, coordinated through Discord, and visualized on our static site, Nationwide combines human creativity a thriving community-driven narrative.
+Nationwide is a **play-by-post** strategy game where you guide a civilization from humble beginnings to galactic domination. Hosted via [The Powder Toy (TPT)](https://powdertoy.co.uk/) saves, coordinated through Discord, and visualized on our static site, Nationwide combines human creativity with a thriving community-driven narrative.
 
 ---
 
@@ -48,7 +48,7 @@ Nationwide is a **play-by-post** strategy game where you guide a civilization fr
   Forge alliances, betray neighbors, and co-author an ever-expanding story. Every map, lore entry, and diplomatic twist comes from players.  
 
 - **Visual Experience**  
-  Interactive maps, lore galleries, and PDF guides bring your civilization to life. Check out our [Lore Gallery](https://www.nationwides.fyi/lore.html) for artwork like the **Eternal Empire Deserts** ![Eternal Empire Desert](https://www.nationwides.fyi/media/site%20images/eternal-desert.png)  
+  Interactive maps, lore galleries, and PDF guides bring your civilization to life. Check out our [Lore Gallery](https://www.nationwides.fyi/lore.html) for artwork like the **The Pinnacle of Edir** ![The Pinnacle of Edir](https://www.nationwides.fyi/media/site%20images/pinnacle-of-edir.png)  
 
 - **Custom Tools**  
   Nationwider—a mapping solution—lets hosts craft world maps and generate save files seamlessly.  
