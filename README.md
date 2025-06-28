@@ -17,11 +17,11 @@ A play-by-post strategic galactic game built on The Powder Toy (TPT), Discord, a
 </p>
 
 <p align="center">
-  <a href="https://github.com/username/nationwide/actions/workflows/ci.yml">
-    <img src="https://github.com/username/nationwide/actions/workflows/ci.yml/badge.svg" alt="CI Status" />
+  <a href="https://github.com/DragonEggLol/nationwide/actions/workflows/ci.yml">
+    <img src="https://github.com/DragonEggLol/nationwide/actions/workflows/ci.yml/badge.svg" alt="CI Status" />
   </a>
-  <a href="https://img.shields.io/github/last-commit/username/nationwide">
-    <img src="https://img.shields.io/github/last-commit/username/nationwide" alt="Last Commit" />
+  <a href="https://img.shields.io/github/last-commit/DragonEggLol/nationwide">
+    <img src="https://img.shields.io/github/last-commit/DragonEggLol/nationwide" alt="Last Commit" />
   </a>
   <a href="https://img.shields.io/website?url=https%3A%2F%2Fwww.nationwides.fyi">
     <img src="https://img.shields.io/website?url=https%3A%2F%2Fwww.nationwides.fyi" alt="Live Demo" />
@@ -30,25 +30,6 @@ A play-by-post strategic galactic game built on The Powder Toy (TPT), Discord, a
     <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT" />
   </a>
 </p>
-
----
-## 🗂 Table of Contents
-
-1. [About](#about)  
-2. [Features](#features)  
-3. [Live Demo](#live-demo)  
-4. [Getting Started](#getting-started)  
-   - [Prerequisites](#prerequisites)  
-   - [Installation](#installation)  
-   - [Development Server](#development-server)  
-5. [Usage](#usage)  
-6. [File Structure](#file-structure)  
-7. [Community & Support](#community--support)  
-8. [Contributing](#contributing)  
-9. [Roadmap](#roadmap)  
-10. [FAQ](#faq)  
-11. [License](#license)  
-12. [Acknowledgements](#acknowledgements)  
 
 ---
 
