@@ -17,9 +17,6 @@ A play-by-post strategic galactic game built on The Powder Toy (TPT), Discord, a
 </p>
 
 <p align="center">
-  <a href="https://github.com/DragonEggLol/nationwide/actions/workflows/ci.yml">
-    <img src="https://github.com/DragonEggLol/nationwide/actions/workflows/ci.yml/badge.svg" alt="CI Status" />
-  </a>
   <a href="https://img.shields.io/github/last-commit/DragonEggLol/nationwide">
     <img src="https://img.shields.io/github/last-commit/DragonEggLol/nationwide" alt="Last Commit" />
   </a>
