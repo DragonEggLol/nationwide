@@ -32,11 +32,11 @@ A play-by-post strategic galactic game built on The Powder Toy (TPT), Discord, a
 
 ## 📖 About
 
-Nationwide is a **play-by-post** strategy game where you guide a civilization from humble beginnings to galactic domination. Hosted via [The Powder Toy (TPT)](https://powdertoy.co.uk/) saves, coordinated through Discord, and visualized on our static site, Nationwide combines human creativity with a thriving community-driven narrative.
+Nationwide is a **play-by-post** strategy game where you guide a civilization from humble beginnings to galactic domination. Hosted via [The Powder Toy (TPT)](https://powdertoy.co.uk/) saves.
 
 ---
 
-## ✨ Features
+## Features
 
 - **Play-by-Post Strategy**  
   Submit written “orders” each turn—ranging from infrastructure builds to military campaigns—and watch the host resolve your commands in the evolving sandbox.  
@@ -58,7 +58,7 @@ Nationwide is a **play-by-post** strategy game where you guide a civilization fr
 
 ---
 
-## 🚀 Live Demo
+## Live Demo
 
 Experience the current galaxy and browse guides:
 
@@ -66,7 +66,7 @@ Experience the current galaxy and browse guides:
 
 ---
 
-## 🛠 Getting Started
+## Getting Started
 
 ### Prerequisites
 
