@@ -8,10 +8,19 @@
     "build": "echo 'Static site - no build process needed'",
     "start": "npx live-server"
   },
-  "keywords": ["game", "strategy", "political", "multiplayer", "tpt"],
+  "keywords": [
+    "game",
+    "strategy",
+    "political",
+    "multiplayer",
+    "tpt"
+  ],
   "author": "DragonEggLol",
   "license": "MIT",
   "devDependencies": {
     "live-server": "^1.2.2"
+  },
+  "dependencies": {
+    "@vercel/analytics": "^1.5.0"
   }
 }
