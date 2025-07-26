@@ -39,7 +39,7 @@ Nationwide is a **play-by-post** strategy game where you guide a civilization fr
 ## Features
 
 - **Play-by-Post Strategy**  
-  Submit written “orders” each turn—ranging from infrastructure builds to military campaigns, and watch the host go through your commands in the saves.
+  Submit written “orders” each turn, ranging from infrastructure builds to military campaigns, and watch the host go through your commands in the saves.
 
 - **From Planet to Galaxy**  
   Evolve your nation from a primitive society on a single planet to an interstellar empire spanning multiple star systems.  
