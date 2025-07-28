@@ -39,7 +39,7 @@ Nationwide is a **play-by-post** strategy game where you guide a civilization fr
 ## Features
 
 - **Play-by-Post Strategy**  
-  Submit written “orders” each turn—ranging from infrastructure builds to military campaigns—and watch the host resolve your commands in the evolving sandbox.  
+  Submit written “orders” each turn, ranging from infrastructure builds to military campaigns, and watch the host resolve your commands in the evolving sandbox.  
 
 - **From Planet to Galaxy**  
   Evolve your nation from a primitive society on a single planet to an interstellar empire spanning multiple star systems.  
@@ -51,7 +51,7 @@ Nationwide is a **play-by-post** strategy game where you guide a civilization fr
   Interactive maps, lore galleries, and PDF guides bring your civilization to life. Check out our [Lore Gallery](https://www.nationwides.fyi/lore.html) for artwork.
 
 - **Custom Tools**  
-  Nationwider—a mapping solution—lets hosts craft world maps and generate save files seamlessly.  
+  Nationwider, a mapping solution, lets hosts craft world maps and generate save files seamlessly.  
 
 - **Lasting Friendships**  
   Join a welcoming community on Discord, make friends, and collaborate across multiple creative projects.
