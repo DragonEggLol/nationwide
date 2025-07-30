@@ -3,6 +3,32 @@
   "outputDirectory": ".",
   "installCommand": "",
   "devCommand": "",
+  "rewrites": [
+    {
+      "source": "/platforms-required",
+      "destination": "/platforms-required.html"
+    },
+    {
+      "source": "/hall-of-fame",
+      "destination": "/hall-of-fame.html"
+    },
+    {
+      "source": "/new-player-guide",
+      "destination": "/new-player-guide.html"
+    },
+    {
+      "source": "/hosting-guide",
+      "destination": "/hosting-guide.html"
+    },
+    {
+      "source": "/game-history",
+      "destination": "/game-history.html"
+    },
+    {
+      "source": "/lore",
+      "destination": "/lore.html"
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",
